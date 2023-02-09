@@ -1,2 +1,6 @@
 frontend/
-backend/
+data/
+
+docker-compose.override.yml
+
+.DS_STORE
