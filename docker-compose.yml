@@ -18,7 +18,7 @@ services:
       BATCH_SIZE: 1000
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
-    restart: always
+      - ./config/consumer/example-custom-dispatching:/config/triples-dispatching/custom-dispatching
     labels:
       - "logging=true"
 
