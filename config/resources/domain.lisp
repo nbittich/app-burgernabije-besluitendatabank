@@ -10,5 +10,4 @@
    of responses in the result object's meta.")
 (defparameter *max-group-sorted-properties* nil)
 
-(read-domain-file "domain_taxtypes.json")
-
+(read-domain-file "domain_agenda-items.json")

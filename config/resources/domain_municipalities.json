@@ -1,0 +1,18 @@
+{
+  "version": "0.1",
+  "prefixes": {
+  },
+  "resources": {
+    "municipalities": {
+      "name": "municipality",
+      "class": "",
+      "attributes": {
+        "name": {
+          "type": "",
+          "predicate": ""
+        }
+      },
+      "new-resource-base": "http://lblod.data.gift/concepts/"
+    }
+  }
+}
