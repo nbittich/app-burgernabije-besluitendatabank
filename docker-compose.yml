@@ -54,3 +54,6 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+
+  uuid-generator:
+    image: lennybontenakel/mu-uuid-generator
