@@ -22,6 +22,16 @@ services:
       - "logging=true"
 
   database:
+    image: semtech/mu-authorization:0.6.0-beta.5
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+      ERROR_ON_UNWRITTEN_DATA: "on"
+    volumes:
+      - ./config/authorization:/config
+    labels:
+      - logging=true
+
+  triplestore:
     image: redpencil/virtuoso:1.0.0
     environment:
       SPARQL_UPDATE: "true"
@@ -56,4 +66,7 @@ services:
       - ./config/resources:/config
 
   uuid-generator:
-    image: lennybontenakel/mu-uuid-generator
+    # image: lennybontenakel/mu-uuid-generator
+    build: ./backend/mu-uuid-generator
+    volumes:
+      - ./data/logs:/data/logs

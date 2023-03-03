@@ -7,7 +7,7 @@
   },
   "resources": {
     "agenda-items": {
-      "name": "agenda-item",
+      "name": "agendaItem",
       "class": "besluit:Agendapunt",
       "attributes": {
         "title": {
@@ -28,12 +28,8 @@
         }
       },
       "relationships": {
-        "happensAfter": {
-          "predicate": "besluit:gebeurtNa",
-          "target": "agenda-item",
-          "cardinality": "single"
-        }
-			},
+
+      },
       "new-resource-base": "http://dev.bnb.lblod.info/agenda-items/"
     }
   }
