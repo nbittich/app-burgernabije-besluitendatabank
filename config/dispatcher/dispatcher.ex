@@ -19,6 +19,10 @@ defmodule Dispatcher do
   # Run `docker-compose restart dispatcher` after updating
   # this file.
 
+  get "/*path", @json do
+    Proxy.forward conn, path, "http://frontend/"
+  end
+
   get "/agenda-items/*path", @json do
     Proxy.forward conn, path, "http://resources/agenda-items"
   end

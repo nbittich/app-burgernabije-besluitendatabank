@@ -1,5 +1,11 @@
 version: '3.7'
 
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.12
@@ -37,6 +43,15 @@ services:
       - resources:resource
     volumes:
       - ./config/dispatcher:/config
+
+  frontend:
+    build: ./frontend
+    links:
+      - identifier
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
 
   identifier:
     image: semtech/mu-identifier:1.9.1
