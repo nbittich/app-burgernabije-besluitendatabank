@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?location a <http://www.w3.org/ns/prov#Location>.
+    ?location ?locationP ?locationO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?location a <http://www.w3.org/ns/prov#Location>.
+    ?location ?locationP ?locationO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?location a <http://www.w3.org/ns/prov#Location>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?location a <http://www.w3.org/ns/prov#Location>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?location ?locationP ?locationO.
+  }
+}

@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+  }
+}

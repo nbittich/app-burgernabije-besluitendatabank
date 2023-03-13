@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?error a <http://redpencil.data.gift/vocabularies/deltas/Error>.
+    ?error ?errorP ?errorO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?error a <http://redpencil.data.gift/vocabularies/deltas/Error>.
+    ?error ?errorP ?errorO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?error a <http://redpencil.data.gift/vocabularies/deltas/Error>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?error a <http://redpencil.data.gift/vocabularies/deltas/Error>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?error ?errorP ?errorO.
+  }
+}

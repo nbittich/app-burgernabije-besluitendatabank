@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?person a <http://xmlns.com/foaf/0.1/Person>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?person a <http://xmlns.com/foaf/0.1/Person>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?person ?personP ?personO.
+  }
+}

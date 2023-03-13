@@ -7,30 +7,61 @@
   },
   "resources": {
     "agenda-items": {
-      "name": "agendaItem",
+      "name": "agenda-item",
       "class": "besluit:Agendapunt",
       "attributes": {
         "title": {
           "type": "string",
           "predicate": "purl:title"
         },
-        "description": {
-          "type": "string",
-          "predicate": "purl:description"
-        },
         "plannedForPublic": {
           "type": "boolean",
           "predicate": "besluit:geplandOpenbaar"
+        },        
+        "public": {
+          "type": "boolean",
+          "predicate": "besluit:openbaar"
         },
         "alternateLink" : {
           "type": "string",
           "predicate": "owl:sameAs"
         }
       },
-      "relationships": {
-
+       "relationships": {
+        "happensAfter": {
+          "predicate": "besluit:gebeurtNa",
+          "target": "agenda-item",
+          "cardinality": "one"
+        },
+        "appliedAfter": {
+          "predicate": "besluit:aangebrachtNa",
+          "target": "agenda-item",
+          "cardinality": "one"
+        },
+        "subject": {
+          "predicate": "purl:subject",
+          "target": "agenda-item",
+          "cardinality": "one"
+        },
+        "generated": {
+          "predicate": "http://www.w3.org/ns/prov#generated",
+          "target": "generated",
+          "cardinality": "one"
+        }
       },
       "new-resource-base": "http://dev.bnb.lblod.info/agenda-items/"
+    },
+    
+    "generated": {
+      "name": "generated",
+      "class": "besluit:Agendapunt",
+      "attributes": {
+        "description": "http://data.europa.eu/eli/ontology#description"	
+      },
+      "relationships": {
+        
+      },
+      "new-resource-base": "http://dev.bnb.lblod.info/generated/"
     }
   }
 }

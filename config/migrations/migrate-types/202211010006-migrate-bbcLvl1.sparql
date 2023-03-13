@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?bbcLvl1 a <http://mu.semte.ch/vocabularies/ext/BBC_lvl1>.
+    ?bbcLvl1 ?bbcLvl1P ?bbcLvl1O.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bbcLvl1 a <http://mu.semte.ch/vocabularies/ext/BBC_lvl1>.
+    ?bbcLvl1 ?bbcLvl1P ?bbcLvl1O.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?bbcLvl1 a <http://mu.semte.ch/vocabularies/ext/BBC_lvl1>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?bbcLvl1 a <http://mu.semte.ch/vocabularies/ext/BBC_lvl1>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?bbcLvl1 ?bbcLvl1P ?bbcLvl1O.
+  }
+}

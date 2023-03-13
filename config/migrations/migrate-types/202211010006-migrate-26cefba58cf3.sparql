@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?26cefba58cf3 a <http://data.lblod.info/ML2GrowClassification/4cec000d-2403-470e-965e-26cefba58cf3>.
+    ?26cefba58cf3 ?26cefba58cf3P ?26cefba58cf3O.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?26cefba58cf3 a <http://data.lblod.info/ML2GrowClassification/4cec000d-2403-470e-965e-26cefba58cf3>.
+    ?26cefba58cf3 ?26cefba58cf3P ?26cefba58cf3O.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?26cefba58cf3 a <http://data.lblod.info/ML2GrowClassification/4cec000d-2403-470e-965e-26cefba58cf3>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?26cefba58cf3 a <http://data.lblod.info/ML2GrowClassification/4cec000d-2403-470e-965e-26cefba58cf3>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?26cefba58cf3 ?26cefba58cf3P ?26cefba58cf3O.
+  }
+}

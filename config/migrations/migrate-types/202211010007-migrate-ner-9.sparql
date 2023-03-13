@@ -1,0 +1,31 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    ?ner ?nerP ?nerO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    ?ner ?nerP ?nerO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    }
+  }
+
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?ner ?nerP ?nerO.
+    }
+  } MINUS {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?ner ?nerP ?nerO.
+    }
+  }
+} LIMIT 100000

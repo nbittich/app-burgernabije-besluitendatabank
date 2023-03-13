@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+  }
+}

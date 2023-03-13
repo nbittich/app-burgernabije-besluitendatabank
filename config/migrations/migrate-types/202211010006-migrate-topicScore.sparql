@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    ?topicScore ?topicScoreP ?topicScoreO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    ?topicScore ?topicScoreP ?topicScoreO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?topicScore ?topicScoreP ?topicScoreO.
+  }
+}

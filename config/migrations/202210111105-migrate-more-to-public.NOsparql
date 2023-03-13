@@ -1,0 +1,144 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+    ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+
+    ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    ?topicScore ?topicScoreP ?topicScoreO.
+
+    ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    ?isTopic ?isTopicP ?isTopicO.
+
+    ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    ?relevantWord ?relevantWordP ?relevantWordO.
+
+    ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+    ?concept ?conceptP ?conceptO.
+
+    ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+    ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+
+    ?class a <http://www.w3.org/2000/01/rdf-schema#Class>.
+    ?class ?classP ?classO.
+
+    ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+    ?onlineAccount ?onlineAccountP ?onlineAccountO.
+
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+
+    ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+    ?marCode ?marCodeP ?marCodeO.
+
+    ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    ?ner ?nerP ?nerO.
+
+    ?periodOfTime a <http://data.europa.eu/m8g/PeriodOfTime>.
+    ?periodOfTime ?periodOfTimeP ?periodOfTimeO.
+
+    ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+    ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+
+    ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+    ?topicScore ?topicScoreP ?topicScoreO.
+
+    ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    ?isTopic ?isTopicP ?isTopicO.
+
+    ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    ?relevantWord ?relevantWordP ?relevantWordO.
+
+    ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+    ?concept ?conceptP ?conceptO.
+
+    ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+    ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+
+    ?class a <http://www.w3.org/2000/01/rdf-schema#Class>.
+    ?class ?classP ?classO.
+
+    ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+    ?onlineAccount ?onlineAccountP ?onlineAccountO.
+
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+
+    ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+    ?marCode ?marCodeP ?marCodeO.
+
+    ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+    ?ner ?nerP ?nerO.
+
+    ?periodOfTime a <http://data.europa.eu/m8g/PeriodOfTime>.
+    ?periodOfTime ?periodOfTimeP ?periodOfTimeO.
+
+    ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+  }
+} WHERE {
+  GRAPH <http://mu.semte.ch/application> {
+    {
+      ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+      ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+    } UNION {
+      ?topicScore a <http://mu.semte.ch/vocabularies/ext/TopicScore>.
+      ?topicScore ?topicScoreP ?topicScoreO.
+    } UNION {
+      ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+      ?isTopic ?isTopicP ?isTopicO.
+    } UNION {
+      ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+      ?relevantWord ?relevantWordP ?relevantWordO.
+    } UNION {
+      ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+      ?concept ?conceptP ?conceptO.
+    } UNION {
+      ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+      ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+    } UNION {
+      ?class a <http://www.w3.org/2000/01/rdf-schema#Class>.
+      ?class ?classP ?classO.
+    } UNION {
+      ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+      ?onlineAccount ?onlineAccountP ?onlineAccountO.
+    } UNION {
+      ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+      ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+    } UNION {
+      ?person a <http://xmlns.com/foaf/0.1/Person>.
+      ?person ?personP ?personO.
+    } UNION {
+      ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+      ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+    } UNION {
+      ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+      ?marCode ?marCodeP ?marCodeO.
+    } UNION {
+      ?ner a <http://mu.semte.ch/vocabularies/ext/Ner>.
+      ?ner ?nerP ?nerO.
+    } UNION {
+      ?periodOfTime a <http://data.europa.eu/m8g/PeriodOfTime>.
+      ?periodOfTime ?periodOfTimeP ?periodOfTimeO.
+    } UNION {
+      ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+      ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+    }
+  }
+}

@@ -1,0 +1,24 @@
+INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?document a <http://xmlns.com/foaf/0.1/Document>.
+    ?document ?documentP ?documentO.
+  }
+} } DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?document a <http://xmlns.com/foaf/0.1/Document>.
+    ?document ?documentP ?documentO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?document a <http://xmlns.com/foaf/0.1/Document>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?document a <http://xmlns.com/foaf/0.1/Document>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?document ?documentP ?documentO.
+  }
+}

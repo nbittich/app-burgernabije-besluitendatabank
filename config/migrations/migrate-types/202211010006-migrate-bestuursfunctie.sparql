@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?bestuursfunctie a <http://data.lblod.info/vocabularies/leidinggevenden/Bestuursfunctie>.
+    ?bestuursfunctie ?bestuursfunctieP ?bestuursfunctieO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuursfunctie a <http://data.lblod.info/vocabularies/leidinggevenden/Bestuursfunctie>.
+    ?bestuursfunctie ?bestuursfunctieP ?bestuursfunctieO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?bestuursfunctie a <http://data.lblod.info/vocabularies/leidinggevenden/Bestuursfunctie>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?bestuursfunctie a <http://data.lblod.info/vocabularies/leidinggevenden/Bestuursfunctie>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?bestuursfunctie ?bestuursfunctieP ?bestuursfunctieO.
+  }
+}

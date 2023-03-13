@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    ?relevantWord ?relevantWordP ?relevantWordO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    ?relevantWord ?relevantWordP ?relevantWordO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?relevantWord a <http://mu.semte.ch/vocabularies/ext/relevant_word>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?relevantWord ?relevantWordP ?relevantWordO.
+  }
+}

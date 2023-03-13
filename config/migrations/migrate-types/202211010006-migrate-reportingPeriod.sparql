@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?reportingPeriod a <http://lblod.data.gift/vocabularies/submissions/ReportingPeriod>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?reportingPeriod ?reportingPeriodP ?reportingPeriodO.
+  }
+}

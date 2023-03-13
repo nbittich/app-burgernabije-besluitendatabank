@@ -26,7 +26,7 @@
                 },
                 {
                   "key": "limit",
-                  "value": "3",
+                  "value": "3", 
                   "description": "Amount of items per page",
                   "disabled": true
                 },

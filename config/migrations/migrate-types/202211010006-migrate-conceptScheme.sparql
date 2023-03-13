@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+  }
+}

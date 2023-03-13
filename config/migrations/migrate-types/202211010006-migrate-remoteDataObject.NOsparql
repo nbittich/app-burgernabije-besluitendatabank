@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer> {
+    ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer> {
+      ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer> {
+    ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+  }
+}

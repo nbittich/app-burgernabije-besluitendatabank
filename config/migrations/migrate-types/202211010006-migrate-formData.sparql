@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    ?formData ?formDataP ?formDataO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    ?formData ?formDataP ?formDataO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?formData ?formDataP ?formDataO.
+  }
+}

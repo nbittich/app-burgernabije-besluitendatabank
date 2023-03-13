@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    ?isTopic ?isTopicP ?isTopicO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    ?isTopic ?isTopicP ?isTopicO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?isTopic a <http://mu.semte.ch/vocabularies/ext/isTopic>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?isTopic ?isTopicP ?isTopicO.
+  }
+}

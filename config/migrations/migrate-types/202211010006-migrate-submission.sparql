@@ -1,0 +1,24 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    ?submission ?submissionP ?submissionO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    ?submission ?submissionP ?submissionO.
+  }
+} WHERE {
+  {
+    GRAPH <http://mu.semte.ch/application> {
+      ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    }
+  } UNION {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    }
+  }
+  GRAPH <http://mu.semte.ch/application> {
+    ?submission ?submissionP ?submissionO.
+  }
+}

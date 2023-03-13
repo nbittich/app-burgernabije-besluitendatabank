@@ -1,0 +1,216 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/application> {
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+
+    ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+    ?onlineAccount ?onlineAccountP ?onlineAccountO.
+
+    ?fileDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>.
+    ?fileDataObject ?fileDataObjectP ?fileDataObjectO.
+
+    ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+
+    ?location a <http://www.w3.org/ns/prov#Location>.
+    ?location ?locationP ?locationO.
+
+    ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+    ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+
+    ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+    ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+
+    ?bestuursorgaanClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode>.
+    ?bestuursorgaanClassificatieCode ?bestuursorgaanClassificatieCodeP ?bestuursorgaanClassificatieCodeO.
+
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+
+    ?authenticityType a <http://mu.semte.ch/vocabularies/ext/AuthenticityType>.
+    ?authenticityType ?authenticityTypeP ?authenticityTypeO.
+
+    ?taxType a <http://mu.semte.ch/vocabularies/ext/TaxType>.
+    ?taxType ?taxTypeP ?taxTypeO.
+
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+
+    ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+    ?concept ?conceptP ?conceptO.
+
+    ?document a <http://xmlns.com/foaf/0.1/Document>.
+    ?document ?documentP ?documentO.
+
+    ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    ?submission ?submissionP ?submissionO.
+
+    ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+
+    ?taxRate a <http://lblod.data.gift/vocabularies/besluit/TaxRate>.
+    ?taxRate ?taxRateP ?taxRateO.
+
+    ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    ?formData ?formDataP ?formDataO.
+
+    ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+    ?marCode ?marCodeP ?marCodeO.
+
+    ?revenueReport a <http://dev.lynx.lblod.info/vocabulary#RevenueReport>.
+    ?revenueReport ?revenueReportP ?revenueReportO.
+
+    ?taxCategory a <http://dev.lynx.lblod.info/vocabulary#TaxCategor>.
+    ?taxCategory ?taxCategoryP ?taxCategoryO.
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?person a <http://xmlns.com/foaf/0.1/Person>.
+    ?person ?personP ?personO.
+
+    ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+    ?onlineAccount ?onlineAccountP ?onlineAccountO.
+
+    ?fileDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>.
+    ?fileDataObject ?fileDataObjectP ?fileDataObjectO.
+
+    ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+    ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+
+    ?location a <http://www.w3.org/ns/prov#Location>.
+    ?location ?locationP ?locationO.
+
+    ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+    ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+
+    ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+    ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+
+    ?bestuursorgaanClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode>.
+    ?bestuursorgaanClassificatieCode ?bestuursorgaanClassificatieCodeP ?bestuursorgaanClassificatieCodeO.
+
+    ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+    ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+
+    ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+    ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+
+    ?authenticityType a <http://mu.semte.ch/vocabularies/ext/AuthenticityType>.
+    ?authenticityType ?authenticityTypeP ?authenticityTypeO.
+
+    ?taxType a <http://mu.semte.ch/vocabularies/ext/TaxType>.
+    ?taxType ?taxTypeP ?taxTypeO.
+
+    ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+    ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+
+    ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+    ?concept ?conceptP ?conceptO.
+
+    ?document a <http://xmlns.com/foaf/0.1/Document>.
+    ?document ?documentP ?documentO.
+
+    ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+    ?submission ?submissionP ?submissionO.
+
+    ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+    ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+
+    ?taxRate a <http://lblod.data.gift/vocabularies/besluit/TaxRate>.
+    ?taxRate ?taxRateP ?taxRateO.
+
+    ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+    ?formData ?formDataP ?formDataO.
+
+    ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+    ?marCode ?marCodeP ?marCodeO.
+
+    ?revenueReport a <http://dev.lynx.lblod.info/vocabulary#RevenueReport>.
+    ?revenueReport ?revenueReportP ?revenueReportO.
+
+    ?taxCategory a <http://dev.lynx.lblod.info/vocabulary#TaxCategor>.
+    ?taxCategory ?taxCategoryP ?taxCategoryO.
+  }
+} WHERE {
+  GRAPH <http://mu.semte.ch/application> {
+    {
+      ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+      ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+    } UNION {
+      ?person a <http://xmlns.com/foaf/0.1/Person>.
+      ?person ?personP ?personO.
+    } UNION {
+      ?onlineAccount a <http://xmlns.com/foaf/0.1/OnlineAccount>.
+      ?onlineAccount ?onlineAccountP ?onlineAccountO.
+    } UNION {
+      ?fileDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>.
+      ?fileDataObject ?fileDataObjectP ?fileDataObjectO.
+    } UNION {
+      ?remoteDataObject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>.
+      ?remoteDataObject ?remoteDataObjectP ?remoteDataObjectO.
+    } UNION {
+      ?location a <http://www.w3.org/ns/prov#Location>.
+      ?location ?locationP ?locationO.
+    } UNION {
+      ?bestuurseenheidClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode>.
+      ?bestuurseenheidClassificatieCode ?bestuurseenheidClassificatieCodeP ?bestuurseenheidClassificatieCodeO.
+    } UNION {
+      ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>.
+      ?bestuursorgaan ?bestuursorgaanP ?bestuursorgaanO.
+    } UNION {
+      ?bestuursorgaanClassificatieCode a <http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode>.
+      ?bestuursorgaanClassificatieCode ?bestuursorgaanClassificatieCodeP ?bestuursorgaanClassificatieCodeO.
+    } UNION {
+      ?bestuurseenheid a <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>.
+      ?bestuurseenheid ?bestuurseenheidP ?bestuurseenheidO.
+    } UNION {
+      ?chartOfAccount a <http://mu.semte.ch/vocabularies/ext/ChartOfAccount>.
+      ?chartOfAccount ?chartOfAccountP ?chartOfAccountO.
+    } UNION {
+      ?authenticityType a <http://mu.semte.ch/vocabularies/ext/AuthenticityType>.
+      ?authenticityType ?authenticityTypeP ?authenticityTypeO.
+    } UNION {
+      ?taxType a <http://mu.semte.ch/vocabularies/ext/TaxType>.
+      ?taxType ?taxTypeP ?taxTypeO.
+    } UNION {
+      ?conceptScheme a <http://www.w3.org/2004/02/skos/core#ConceptScheme>.
+      ?conceptScheme ?conceptSchemeP ?conceptSchemeO.
+    } UNION {
+      ?concept a <http://www.w3.org/2004/02/skos/core#Concept>.
+      ?concept ?conceptP ?conceptO.
+    } UNION {
+      ?document a <http://xmlns.com/foaf/0.1/Document>.
+      ?document ?documentP ?documentO.
+    } UNION {
+      ?submission a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+      ?submission ?submissionP ?submissionO.
+    } UNION {
+      ?submissionDocument a <http://mu.semte.ch/vocabularies/ext/SubmissionDocument>.
+      ?submissionDocument ?submissionDocumentP ?submissionDocumentO.
+    } UNION {
+      ?taxRate a <http://lblod.data.gift/vocabularies/besluit/TaxRate>.
+      ?taxRate ?taxRateP ?taxRateO.
+    } UNION {
+      ?formData a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>.
+      ?formData ?formDataP ?formDataO.
+    } UNION {
+      ?marCode a <http://dev.lynx.lblod.info/vocabulary#MARCode>.
+      ?marCode ?marCodeP ?marCodeO.
+    } UNION {
+      ?revenueReport a <http://dev.lynx.lblod.info/vocabulary#RevenueReport>.
+      ?revenueReport ?revenueReportP ?revenueReportO.
+    } UNION {
+      ?taxCategory a <http://dev.lynx.lblod.info/vocabulary#TaxCategor>.
+      ?taxCategory ?taxCategoryP ?taxCategoryO.
+    }
+  }
+}
