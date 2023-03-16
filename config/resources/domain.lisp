@@ -11,7 +11,5 @@
 (defparameter *max-group-sorted-properties* nil)
 
 (read-domain-file "domain_agenda-items.json")
-(read-domain-file "domain_bestuursorgaan.json")
 
-(read-domain-file "subdomain_votings.json")
-(read-domain-file "subdomain_generated.json")
+(read-domain-file "subdomain_decisions.json")

@@ -18,17 +18,21 @@ defmodule Dispatcher do
   #
   # Run `docker-compose restart dispatcher` after updating
   # this file.
-
-  get "/*path", @json do
-    Proxy.forward conn, path, "http://frontend/"
+  
+  get "/decisions/*path", @json do
+    Proxy.forward conn, path, "http://resources/decisions"
   end
 
   get "/agenda-items/*path", @json do
     Proxy.forward conn, path, "http://resources/agenda-items"
   end
-  
+
   get "/uuid-generator/*path", @json do
     Proxy.forward conn, path, "http://uuid-generator/"
+  end
+
+  get "/frontend/*path", @json do
+    Proxy.forward conn, path, "http://frontend/"
   end
 
   match "/*_", %{ last_call: true } do
