@@ -1,24 +1,30 @@
-# mu-project
+# App BurgerNabije Besluitendatabank
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
+The backend for BNB, a site that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
+
+Important notes: 
+- The frontend code is seperated, and can be found [here](https://github.com/lblod/frontend-burgernabije-besluitendatabank).
+- You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank).
+- This project is built on the semantic.works stack. See [semantic.works](https://semantic.works/) for more info.
 
 ## How to
+### Run locally
+Running this project requires Docker-Compose to be installed. 
 
-Setting up your environment is done in three easy steps:  first you configure the running microservices and their names in `docker-compose.yml`, then you configure how requests are dispatched in `config/dispatcher.ex`, and lastly you start everything.
+```bash
+git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
+cd app-burgernabije-besluitendatabank
+docker-compose up
+```
 
-### Hooking things up with docker-compose
-
-Alter the `docker-compose.yml` file so it contains all microservices you need.  The example content should be clear, but you can find more information in the [Docker Compose documentation](https://docs.docker.com/compose/).  Don't remove the `identifier` and `db` container, they are respectively the entry-point and the database of your application.  Don't forget to link the necessary microservices to the dispatcher and the database to the microservices.
-
-### Configure the dispatcher
-
-Next, alter the file `config/dispatcher.ex` based on the example that is there by default.  Dispatch requests to the necessary microservices based on the names you used for the microservice.
-
-### Boot up the system
-
-Boot your microservices-enabled system using docker-compose.
-
-    cd /path/to/mu-project
-    docker-compose up
-
-You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
+## Reference
+### Project structure
+- [config/](config/): Configuration for the services 
+    - [authorization/](config/authorization/): Authorization & access rights. [docs](https://github.com/mu-semtech/mu-authorization/)
+    - [consumer](config/consumer/): Data syncing. [docs](https://github.com/lblod/delta-consumer)
+    - [dispatcher](config/dispatcher/): Request routing. [docs](https://github.com/mu-semtech/mu-dispatcher)
+    - [migrations](config/migrations/): Migration file processing. [docs](https://github.com/mu-semtech/mu-migrations-service)
+    - [resources](config/resources/): Linked data to JSON:API. [service docs](https://github.com/mu-semtech/mu-cl-resources)/[json:api docs](https://jsonapi.org/)
+    - [virtuoso](config/virtuoso/): Triplestore/linked data database. [docs](https://hub.docker.com/r/redpencil/virtuoso)
+- [docker-compose.yml](docker-compose.yml): Entrypoint for the projects' services
+- [postman.json](postman.json): Configuration for API testing using [Postman](https://www.postman.com/)
