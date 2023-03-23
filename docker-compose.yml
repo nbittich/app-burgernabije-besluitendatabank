@@ -46,6 +46,7 @@ services:
 
   frontend:
     build: ./frontend
+    # image: snenenenene/frontend-burgernabije-besluitendatabank
     links:
       - identifier
     restart: always
@@ -92,7 +93,9 @@ services:
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
 
   uuid-generator:
-    image: lennybontenakel/mu-uuid-generator
+    image: lennybontenakel/mu-uuid-generator:latest
     # build: ./backend/mu-uuid-generator
+    environment:
+      MU_SPARQL_ENDPOINT: 'http://triplestore:8890/sparql'
     volumes:
       - ./data/logs:/data/logs

@@ -1,2 +1,2 @@
-git clone git@github.com:lblod/frontend-burgernabije-besluitendatabank.git frontend
-# git clone git@github.com:lblod/backend-burgernabije-besluitendatabank.git backend
+git clone https://github.com/lblod/frontend-burgernabije-besluitendatabank.git frontend
+git clone https://github.com/snenenenenenene/flanders-geojson.git geojson
