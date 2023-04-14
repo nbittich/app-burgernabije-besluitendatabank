@@ -63,8 +63,6 @@ services:
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
     links:
       - dispatcher:dispatcher
-    ports:
-      - "8000:80"
 
   migrations:
     image: semtech/mu-migrations-service:0.8.0
@@ -87,8 +85,6 @@ services:
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
-    ports:
-      - "8890:8890"
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
