@@ -22,6 +22,7 @@ services:
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       BATCH_SIZE: 500
+      DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     labels:
