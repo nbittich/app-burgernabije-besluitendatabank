@@ -47,8 +47,7 @@ services:
       - ./config/dispatcher:/config
 
   frontend:
-    build: ./frontend
-    # image: snenenenene/frontend-burgernabije-besluitendatabank
+    image: snenenenene/frontend-burgernabije-besluitendatabank
     links:
       - identifier
     restart: always
