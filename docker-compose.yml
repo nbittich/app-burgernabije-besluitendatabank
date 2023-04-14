@@ -25,9 +25,10 @@ services:
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
+    restart: always
     labels:
       - "logging=true"
-
+    logging: *default-logging
   database:
     image: semtech/mu-authorization:0.6.0-beta.5
     environment:
