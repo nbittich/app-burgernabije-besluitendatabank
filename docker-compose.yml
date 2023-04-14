@@ -30,7 +30,7 @@ services:
       - "logging=true"
     logging: *default-logging
   database:
-    image: semtech/mu-authorization:0.6.0-beta.5
+    image: semtech/mu-authorization:0.6.0-beta.8
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
       ERROR_ON_UNWRITTEN_DATA: "on"
@@ -84,7 +84,7 @@ services:
       - ./config/resources:/config
 
   triplestore:
-    image: redpencil/virtuoso:1.0.0
+    image: redpencil/virtuoso:1.1.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
