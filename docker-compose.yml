@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   besluiten-consumer:
-    image: lblod/delta-consumer:0.0.12
+    image: lblod/delta-consumer:0.0.16
     environment:
       DCR_SYNC_BASE_URL: "https://dev.harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
@@ -21,14 +21,16 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
-      BATCH_SIZE: 1000
+      BATCH_SIZE: 500
+      DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
+    restart: always
     labels:
       - "logging=true"
-
+    logging: *default-logging
   database:
-    image: semtech/mu-authorization:0.6.0-beta.5
+    image: semtech/mu-authorization:0.6.0-beta.8
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
       ERROR_ON_UNWRITTEN_DATA: "on"
@@ -45,8 +47,7 @@ services:
       - ./config/dispatcher:/config
 
   frontend:
-    build: ./frontend
-    # image: snenenenene/frontend-burgernabije-besluitendatabank
+    image: snenenenene/frontend-burgernabije-besluitendatabank
     links:
       - identifier
     restart: always
@@ -82,7 +83,7 @@ services:
       - ./config/resources:/config
 
   triplestore:
-    image: redpencil/virtuoso:1.0.0
+    image: redpencil/virtuoso:1.1.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"

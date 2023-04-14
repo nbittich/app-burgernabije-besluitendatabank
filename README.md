@@ -22,3 +22,36 @@ Boot your microservices-enabled system using docker-compose.
     docker-compose up
 
 You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
+
+### sync data from lblod-harvester
+Setting up the sync should happen work with the folloing steps:
+- ensure docker-compose.override.yml has AT LEAST the following information
+```
+version: '3.7'
+
+services:
+#(...) there might be other services
+
+  besluiten-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/" # you choose endpoint here
+      DCR_DISABLE_INITIAL_SYNC: "true"
+# (...) there might be other information
+```
+- start the stack. `drc up -d`. Ensure the migrations have run and finished `drc logs -f --tail=100 migrations`
+- Now the sync can be started. Ensure you update the `docker-compose.override.yml` to
+```
+version: '3.7'
+
+services:
+#(...) there might be other services
+
+  besluiten-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/" # you choose endpoint here
+      DCR_DISABLE_INITIAL_SYNC: "false" # <------ THIS CHANGED
+# (...) there might be other information
+```
+- start the sync `drc up -d besluiten-consumer`.
+  Data should be ingesting.
+  Check the logs `drc logs -f --tail=200 besluiten-consumer`
