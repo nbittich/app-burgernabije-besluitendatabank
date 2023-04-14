@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   besluiten-consumer:
-    image: lblod/delta-consumer:0.0.12
+    image: lblod/delta-consumer:0.0.16
     environment:
       DCR_SYNC_BASE_URL: "https://dev.harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
