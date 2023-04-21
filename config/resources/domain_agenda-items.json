@@ -14,7 +14,7 @@
           "type": "string",
           "predicate": "purl:title"
         },
-        "plannedForPublic": {
+        "planned-for-public": {
           "type": "boolean",
           "predicate": "besluit:geplandOpenbaar"
         },        
@@ -22,31 +22,22 @@
           "type": "boolean",
           "predicate": "besluit:openbaar"
         },
-        "alternateLink" : {
+        "alternate-link" : {
           "type": "string",
           "predicate": "owl:sameAs"
         }
       },
-       "relationships": {
-        "happensAfter": {
-          "predicate": "besluit:gebeurtNa",
-          "target": "agenda-item",
-          "cardinality": "one"
-        },
-        "appliedAfter": {
-          "predicate": "besluit:aangebrachtNa",
-          "target": "agenda-item",
-          "cardinality": "one"
-        },
-        "subject": {
-          "predicate": "purl:subject",
-          "target": "agenda-item",
-          "cardinality": "one"
-        },
+      "relationships": {
         "generated": {
           "predicate": "http://www.w3.org/ns/prov#generated",
           "target": "decisions",
           "cardinality": "one"
+        },
+        "session": {
+          "predicate": "besluit:behandelt",
+          "target": "session",
+          "cardinality": "one",
+          "inverse": true
         }
       },
       "new-resource-base": "http://dev.bnb.lblod.info/agenda-items/"

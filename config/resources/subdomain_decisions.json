@@ -19,7 +19,7 @@
           "type": "string",
           "predicate": "eu:description"
         },
-        "alternateLink" : {
+        "alternate-link" : {
           "type": "string",
           "predicate": "owl:sameAs"
         }

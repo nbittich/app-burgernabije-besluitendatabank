@@ -89,6 +89,7 @@ services:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
 
+
   uuid-generator:
     image: lennybontenakel/mu-uuid-generator:latest
     # build: ./backend/mu-uuid-generator

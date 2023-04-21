@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "prefixes": {
+    "besluit": "http://data.vlaanderen.be/ns/besluit#"
+  },
+  "resources": {
+    "sessions": {
+      "name": "session",
+      "class": "besluit:Zitting",
+      "attributes": {
+        "started-at": {
+          "type": "string",
+          "predicate": "http://www.w3.org/ns/prov#startedAtTime"
+        },
+        "ended-at": {
+          "type": "string",
+          "predicate": "http://www.w3.org/ns/prov#endedAtTime"
+        }
+      },
+      "relationships": {
+        "is-gehouden-door": {
+          "predicate": "besluit:isGehoudenDoor",
+          "target": "governing-agent",
+          "cardinality": "one"
+        }
+			},
+      "new-resource-base": "besluit:Zitting"
+    }
+  }
+}
