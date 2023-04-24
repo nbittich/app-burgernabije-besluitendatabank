@@ -17,6 +17,12 @@ cd app-burgernabije-besluitendatabank
 docker-compose up
 ```
 
+### Do virtuoso things
+The triplestore is a virtuoso instance! You can find the gigantic docs [here](https://docs.openlinksw.com/virtuoso/ch-overview/). However, some common assistance 
+```bash
+docker-compose exec triplestore cat /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.log  # Print virtuoso logs
+```
+
 ## Reference
 ### Project structure
 - [config/](config/): Configuration for the services 
