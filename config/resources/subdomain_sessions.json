@@ -24,7 +24,7 @@
           "cardinality": "one"
         }
 			},
-      "new-resource-base": "besluit:Zitting"
+      "new-resource-base": "http://dev.bnb.lblod.info/Zitting"
     }
   }
 }

@@ -27,6 +27,10 @@
       Proxy.forward conn, path, "http://resources/agenda-items"
     end
 
+    get "/api/sessions/*path", @json do
+      Proxy.forward conn, path, "http://resources/sessions"
+    end
+
     match "/api/uuid-generator/*path", @json do
       Proxy.forward conn, path, "http://uuid-generator/"
     end
