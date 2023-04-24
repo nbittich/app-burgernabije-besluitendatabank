@@ -19,19 +19,19 @@
     # Run `docker-compose restart dispatcher` after updating
     # this file.
 
-    get "/api/decisions/*path", @json do
+    get "/decisions/*path", @json do
       Proxy.forward conn, path, "http://resources/decisions"
     end
 
-    get "/api/agenda-items/*path", @json do
+    get "/agenda-items/*path", @json do
       Proxy.forward conn, path, "http://resources/agenda-items"
     end
 
-    get "/api/sessions/*path", @json do
+    get "/sessions/*path", @json do
       Proxy.forward conn, path, "http://resources/sessions"
     end
 
-    match "/api/uuid-generator/*path", @json do
+    match "/uuid-generator/*path", @json do
       Proxy.forward conn, path, "http://uuid-generator/"
     end
 
