@@ -24,26 +24,26 @@
       "relationships": {      
         "attendants": {
           "predicate": "besluit:heeftAanwezige",
-					"target": "",
+					"target": "agent",
 					"cardinality": "many"
         },
         "proponents": {
 					"predicate": "besluit:heeftVoorstander",
-					"target": "",
+					"target": "agent",
 					"cardinality": "many"
         },
         "opponents": {
           "predicate": "besluit:heeftTegenstander",
-          "target": "",
+          "target": "agent",
           "cardinality": "many"
         },
         "voters": {
           "predicate": "besluit:heeftStemmer",
-          "target": "",
+          "target": "agent",
           "cardinality": "many"
         }
 			},
-      "new-resource-base": "besluit:Stemming"
+      "new-resource-base": "http://dev.bnb.lblod.info/votings"
     }
   }
 }

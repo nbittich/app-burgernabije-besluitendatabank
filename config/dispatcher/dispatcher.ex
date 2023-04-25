@@ -19,6 +19,8 @@
     # Run `docker-compose restart dispatcher` after updating
     # this file.
 
+  # RESOURCES 
+
     get "/decisions/*path", @json do
       Proxy.forward conn, path, "http://resources/decisions"
     end
@@ -30,6 +32,20 @@
     get "/sessions/*path", @json do
       Proxy.forward conn, path, "http://resources/sessions"
     end
+    
+    get "/governing-agents/*path", @json do
+      Proxy.forward conn, path, "http://resources/governing-agents"
+    end
+
+    get "/agents/*path", @json do
+      Proxy.forward conn, path, "http://resources/agents"
+    end
+
+    get "/votings/*path", @json do
+      Proxy.forward conn, path, "http://resources/votings"
+    end
+
+  # SERVICES
 
     match "/uuid-generator/*path", @json do
       Proxy.forward conn, path, "http://uuid-generator/"

@@ -30,7 +30,7 @@
       "relationships": {
         "generated": {
           "predicate": "http://www.w3.org/ns/prov#generated",
-          "target": "decisions",
+          "target": "decision",
           "cardinality": "one"
         },
         "session": {

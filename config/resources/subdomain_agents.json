@@ -1,0 +1,43 @@
+{
+    "version": "0.1",
+    "prefixes": {
+      "besluit": "http://data.vlaanderen.be/ns/besluit#",
+      "mandaat": "http://data.vlaanderen.be/ns/mandaat#"
+    },
+    "resources": {
+      "agents": {
+        "name": "agent",
+        "class": "mandaat:Mandataris",
+        "attributes": {
+          "start": {
+            "type": "string",
+            "predicate": "http://data.vlaanderen.be/ns/mandaat#start"
+          }
+        },
+        "relationships": {      
+            "alias": {
+              "predicate": "mandaat:isBestuurlijkeAliasVan",
+              "target": "alias",
+              "cardinality": "one"
+            }
+        },
+        "new-resource-base": "http://dev.bnb.lblod.info/agents"
+      },
+      "alias": {
+        "name": "alias",
+        "class": "http://www.w3.org/ns/person#Person",
+        "attributes": {
+          "firstName": {
+            "type": "string",
+            "predicate": "http://data.vlaanderen.be/ns/persoon#gebruikteVoornaam"
+          },
+          "familyName": {
+            "type": "string",
+            "predicate": "http://xmlns.com/foaf/0.1/familyName"
+          }
+        },
+        "new-resource-base": "http://dev.bnb.lblod.info/alias"
+      }
+    }
+  }
+  

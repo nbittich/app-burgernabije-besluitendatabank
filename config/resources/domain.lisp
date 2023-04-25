@@ -13,4 +13,8 @@
 (read-domain-file "domain_agenda-items.json")
 (read-domain-file "subdomain_sessions.json")
 
+(read-domain-file "subdomain_votings.json")
+(read-domain-file "subdomain_governing-agents.json")
+(read-domain-file "subdomain_agents.json")
+
 (read-domain-file "subdomain_decisions.json")
