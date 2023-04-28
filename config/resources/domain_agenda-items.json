@@ -38,6 +38,12 @@
           "target": "session",
           "cardinality": "one",
           "inverse": true
+        },
+        "handled": {
+          "predicate": "purl:subject",
+          "target": "handledAgendaItem",
+          "cardinality": "one",
+          "inverse": true
         }
       },
       "new-resource-base": "http://dev.bnb.lblod.info/agenda-items/"

@@ -8,9 +8,17 @@
       "name": "voting",
       "class": "besluit:Stemming",
       "attributes": {
-        "subject": {
+        "amount-of-proponents": {
           "type": "string",
-          "predicate": "besluit:onderwerp"
+          "predicate": "besluit:aantalVoorstanders"
+        },
+        "amount-of-opponents": {
+          "type": "string",
+          "predicate": "besluit:aantalTegenstanders"
+        },
+        "amount-of-abstainers": {
+          "type": "string",
+          "predicate": "besluit:aantalOnthouders"
         },
         "is-secret": {
           "type": "string",
