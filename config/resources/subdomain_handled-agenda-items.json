@@ -1,0 +1,32 @@
+{
+  "version": "0.1",
+  "prefixes": {
+    "besluit": "http://data.vlaanderen.be/ns/besluit#",
+    "purl": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "handled-agenda-items": {
+      "name": "handledAgendaItem",
+      "class": "besluit:BehandelingVanAgendapunt",
+      "attributes": {        
+        "public": {
+          "type": "boolean",
+          "predicate": "besluit:openbaar"
+        },
+        "alternate-link" : {
+          "type": "string",
+          "predicate": "owl:sameAs"
+        }
+      },
+      "relationships": {
+        "voting": {
+          "predicate": "besluit:heeftStemming",
+          "target": "voting",
+          "cardinality": "one"
+        }
+      },
+      "new-resource-base": "http://dev.bnb.lblod.info/handled-agenda-items/"
+    }
+  }
+}
