@@ -18,7 +18,7 @@
         }
       },
       "relationships": {
-        "is-gehouden-door": {
+        "governing-agent": {
           "predicate": "besluit:isGehoudenDoor",
           "target": "governing-agent",
           "cardinality": "one"
