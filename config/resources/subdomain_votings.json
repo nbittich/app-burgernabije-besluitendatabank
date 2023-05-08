@@ -1,7 +1,8 @@
 {
   "version": "0.1",
   "prefixes": {
-    "besluit": "http://data.vlaanderen.be/ns/besluit#"
+    "besluit": "http://data.vlaanderen.be/ns/besluit#",
+    "owl": "http://www.w3.org/2002/07/owl#"
   },
   "resources": {
     "votings": {
@@ -20,13 +21,17 @@
           "type": "string",
           "predicate": "besluit:aantalOnthouders"
         },
+        "status" : {
+          "type": "string",
+          "predicate": "besluit:gevolg"
+        },
         "is-secret": {
           "type": "string",
           "predicate": "besluit:geheim"
         },
         "alternate-link" : {
           "type": "string",
-          "predicate": "http://www.w3.org/2002/07/owl#sameAs"
+          "predicate": "owl:sameAs"
         }
       },
       "relationships": {      

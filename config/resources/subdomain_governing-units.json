@@ -5,9 +5,9 @@
 		"skos": "http://www.w3.org/2004/02/skos/core#"
 	},
 	"resources": {
-		"governing-agents": {
-			"name": "governingAgent",
-			"class": "besluit:Bestuursorgaan",
+		"governing-units": {
+			"name": "governingUnit",
+			"class": "besluit:Bestuurseenheid",
 			"attributes": {
 				"label": {
 					"type": "string",
@@ -15,13 +15,13 @@
 				}
 			},
 			"relationships": {
-				"governs": {
-					"predicate": "besluit:bestuurt",
-					"target": "governingUnit",
+				"area": {
+					"predicate": "besluit:werkingsgebied",
+					"target": "location",
 					"cardinality": "one"
 				}
 			},
-			"new-resource-base": "http://dev.bnb.lblod.info/governing-agents/"
+			"new-resource-base": "http://dev.bnb.lblod.info/governing-units/"
 		}
 	}
 }

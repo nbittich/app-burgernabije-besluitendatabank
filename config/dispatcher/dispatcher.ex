@@ -40,13 +40,21 @@
     get "/governing-agents/*path", @json do
       Proxy.forward conn, path, "http://resources/governing-agents"
     end
-
+    
+    get "/governing-units/*path", @json do
+      Proxy.forward conn, path, "http://resources/governing-units"
+    end
+    
     get "/agents/*path", @json do
       Proxy.forward conn, path, "http://resources/agents"
     end
 
     get "/votings/*path", @json do
       Proxy.forward conn, path, "http://resources/votings"
+    end
+
+    get "/locations/*path", @json do
+      Proxy.forward conn, path, "http://resources/locations"
     end
 
   # SERVICES

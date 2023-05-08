@@ -1,0 +1,30 @@
+{
+	"version": "0.1",
+	"prefixes": {
+		"besluit": "http://data.vlaanderen.be/ns/besluit#"
+	},
+	"resources": {
+		"agenda-item-treatments": {
+			"name": "agendaItemTreatment",
+			"class": "besluit:BehandelingVanAgendapunt",
+			"attributes": {        
+				"public": {
+					"type": "boolean",
+					"predicate": "besluit:openbaar"
+				},
+				"alternate-link" : {
+					"type": "string",
+					"predicate": "owl:sameAs"
+				}
+			},
+			"relationships": {
+				"voting": {
+					"predicate": "besluit:heeftStemming",
+					"target": "voting",
+					"cardinality": "one"
+				}
+			},
+			"new-resource-base": "http://dev.bnb.lblod.info/agenda-item-treatment/"
+		}
+	}
+}

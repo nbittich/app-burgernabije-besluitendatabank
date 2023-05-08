@@ -1,7 +1,9 @@
 {
   "version": "0.1",
   "prefixes": {
-    "besluit": "http://data.vlaanderen.be/ns/besluit#"
+    "besluit": "http://data.vlaanderen.be/ns/besluit#",
+    "prov": "http://www.w3.org/ns/prov#"
+
   },
   "resources": {
     "sessions": {
@@ -10,17 +12,17 @@
       "attributes": {
         "started-at": {
           "type": "string",
-          "predicate": "http://www.w3.org/ns/prov#startedAtTime"
+          "predicate": "prov:startedAtTime"
         },
         "ended-at": {
           "type": "string",
-          "predicate": "http://www.w3.org/ns/prov#endedAtTime"
+          "predicate": "prov:endedAtTime"
         }
       },
       "relationships": {
         "governing-agent": {
           "predicate": "besluit:isGehoudenDoor",
-          "target": "governing-agent",
+          "target": "governingAgent",
           "cardinality": "one"
         }
 			},
