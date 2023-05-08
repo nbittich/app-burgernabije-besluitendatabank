@@ -1,32 +1,24 @@
-# mu-project
+# BurgerNabijeBesluitendatabank (back-end)
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
+[The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a site that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
 
-## How to
+You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank), and the [back-end](https://github.com/lblod/frontend-burgernabije-besluitendatabank) here. The front-end repo only contains front-end specific information, back-and and general project info will be added here.
 
-Setting up your environment is done in three easy steps:  first you configure the running microservices and their names in `docker-compose.yml`, then you configure how requests are dispatched in `config/dispatcher.ex`, and lastly you start everything.
 
-### Hooking things up with docker-compose
+## How-To
+*Pre-requisities: Docker & Docker-Compose installed. Some parts of the tutorials may use drc as an alias for docker-compose*
 
-Alter the `docker-compose.yml` file so it contains all microservices you need.  The example content should be clear, but you can find more information in the [Docker Compose documentation](https://docs.docker.com/compose/).  Don't remove the `identifier` and `db` container, they are respectively the entry-point and the database of your application.  Don't forget to link the necessary microservices to the dispatcher and the database to the microservices.
-
-### Configure the dispatcher
-
-Next, alter the file `config/dispatcher.ex` based on the example that is there by default.  Dispatch requests to the necessary microservices based on the names you used for the microservice.
-
-### Boot up the system
-
-Boot your microservices-enabled system using docker-compose.
-
-    cd /path/to/mu-project
-    docker-compose up
-
-You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
-
-### sync data from lblod-harvester
-Setting up the sync should happen work with the folloing steps:
-- ensure docker-compose.override.yml has AT LEAST the following information
+### Setup
+```bash
+git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
+cd app-burgernabije-besluitendatabank.git
+docker-compose up --detach
 ```
+
+### Sync data from lblod-harvester
+Setting up the sync should happen work with the following steps:
+- ensure docker-compose.override.yml has AT LEAST the following information
+```yml
 version: '3.7'
 
 services:
@@ -40,7 +32,7 @@ services:
 ```
 - start the stack. `drc up -d`. Ensure the migrations have run and finished `drc logs -f --tail=100 migrations`
 - Now the sync can be started. Ensure you update the `docker-compose.override.yml` to
-```
+```yml
 version: '3.7'
 
 services:
