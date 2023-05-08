@@ -47,3 +47,10 @@ services:
 - start the sync `drc up -d besluiten-consumer`.
   Data should be ingesting.
   Check the logs `drc logs -f --tail=200 besluiten-consumer`
+
+## Reference
+### Models
+This project is built around the following structure:
+![Diagram for the relationship models](https://data.vlaanderen.be/doc/applicatieprofiel/besluit-publicatie/html/overview.jpg)
+
+Source: [data.vlaanderen.be](https://data.vlaanderen.be/doc/applicatieprofiel/besluit-publicatie/)
