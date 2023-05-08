@@ -29,8 +29,8 @@
       Proxy.forward conn, path, "http://resources/agenda-items"
     end
 
-    get "/handled-agenda-items/*path", @json do
-      Proxy.forward conn, path, "http://resources/handled-agenda-items"
+    get "/agenda-item-treatments/*path", @json do
+      Proxy.forward conn, path, "http://resources/agenda-item-treatments"
     end
 
     get "/sessions/*path", @json do
