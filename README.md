@@ -24,7 +24,7 @@ Boot your microservices-enabled system using docker-compose.
 You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
 
 ### sync data from lblod-harvester
-Setting up the sync should happen work with the folloing steps:
+Setting up the sync should happen work with the following steps:
 - ensure docker-compose.override.yml has AT LEAST the following information
 ```
 version: '3.7'
