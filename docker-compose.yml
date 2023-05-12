@@ -21,8 +21,8 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
-      BATCH_SIZE: 500
-      DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
+      BATCH_SIZE: 100
+      DIRECT_DATABASE_ENDPOINT: "http://database:8890/sparql"
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
@@ -37,7 +37,7 @@ services:
     volumes:
       - ./config/authorization:/config
     labels:
-      - logging=true
+      - "logging=true"
 
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
@@ -63,6 +63,8 @@ services:
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
     links:
       - dispatcher:dispatcher
+    labels:
+      - "logging=true"
 
   migrations:
     image: semtech/mu-migrations-service:0.8.0
@@ -71,7 +73,7 @@ services:
     volumes:
       - ./config/migrations:/data/migrations
     labels:
-      - logging=true
+      - "logging=true"
 
   resources:
     image: semtech/mu-cl-resources:1.20.0
@@ -79,6 +81,8 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+    labels:
+      - "logging=true"
 
   triplestore:
     image: redpencil/virtuoso:1.0.0
@@ -88,12 +92,20 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    labels:
+      - "logging=true"
 
 
-  uuid-generator:
-    image: lennybontenakel/mu-uuid-generator:latest
-    # build: ./backend/mu-uuid-generator
-    environment:
-      MU_SPARQL_ENDPOINT: 'http://triplestore:8890/sparql'
+  uuid-generation:
+    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git
     volumes:
-      - ./data/logs:/data/logs
+      - ./config/uuid-generation/:/config
+    labels:
+      - "logging=true"
+
+  deltanotifier:
+    image: semtech/mu-delta-notifier
+    volumes:
+      - ./config/delta:/config
+    labels:
+      - "logging=true"
