@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  besluiten-consumer:
+    environment:
+      DCR_DISABLE_INITIAL_SYNC: "false" # toggle this in override, leave 'true' in default docker-compose.yml
+    restart: "no"
+  database:
+    restart: "no"
+  dispatcher:
+    ports: 
+      - "80:80"
+    restart: "no"
+  identifier:
+    ports:
+      - "90:80"
+    restart: "no"
+  migrations:
+    restart: "no"
+  resources:
+    restart: "no"
+  triplestore:
+    ports:
+      - "8890:8890"
+    restart: "no"
+  uuid-generation:
+    restart: "no"
+  deltanotifier:
+    restart: "no"
