@@ -73,7 +73,7 @@ services:
     labels:
       - "logging=true"
   uuid-generation:
-    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git
+    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git#main
     volumes:
       - ./config/uuid-generation/:/config
     labels:
