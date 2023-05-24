@@ -1,4 +1,4 @@
 (in-package :mu-cl-resources)
 
-(read-domain-file "slave-besluit-domain.lisp")
-(read-domain-file "slave-mandaat-domain.lisp")
+(read-domain-file "besluit-domain-en.lisp")
+(read-domain-file "mandaat-domain-en.lisp")
