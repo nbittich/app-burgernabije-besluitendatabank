@@ -7,10 +7,102 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
+  identifier:
+    image: semtech/mu-identifier:1.9.1
+    environment:
+      SESSION_COOKIE_SECURE: "on"
+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"}]'
+      DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
+    links:
+      - dispatcher:dispatcher
+    labels:
+      - "logging=true"
+  dispatcher:
+    image: semtech/mu-dispatcher:2.0.0
+    links:
+      - resources:resource
+    volumes:
+      - ./config/dispatcher:/config
+  frontend:
+    image: snenenenene/frontend-burgernabije-besluitendatabank
+    links:
+      - identifier
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
+  database:
+    image: semtech/mu-authorization:0.6.0-beta.8
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+      ERROR_ON_UNWRITTEN_DATA: "on"
+    volumes:
+      - ./config/authorization:/config
+    labels:
+      - "logging=true"
+  migrations:
+    image: semtech/mu-migrations-service:0.8.0
+    links:
+      - triplestore:database
+    volumes:
+      - ./config/migrations:/data/migrations
+    labels:
+      - "logging=true"
+  resources:
+    image: semtech/mu-cl-resources:1.22.2
+    links:
+      - database:database
+    volumes:
+      - ./config/resources:/config
+    labels:
+      - "logging=true"
+  triplestore:
+    image: redpencil/virtuoso:1.0.0
+    environment:
+      SPARQL_UPDATE: "true"
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
+    volumes:
+      - ./data/db:/data
+      - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    labels:
+      - "logging=true"
+  deltanotifier:
+    image: semtech/mu-delta-notifier
+    volumes:
+      - ./config/delta:/config
+    labels:
+      - "logging=true"
+  uuid-generation:
+    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git
+    volumes:
+      - ./config/uuid-generation/:/config
+    labels:
+      - "logging=true"
+  mandatendatabank-consumer:
+    image: lblod/delta-consumer:0.0.16
+    environment:
+      DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
+      DCR_SERVICE_NAME: "mandatendatabank-consumer"
+      DCR_SYNC_FILES_PATH: "/sync/mandatarissen/files"
+      DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/MandatarissenCacheGraphDump"
+      DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/mandatarissen"
+      DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/mandatarissenSyncing"
+      DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/mandatendatabank-consumer"
+      DCR_KEEP_DELTA_FILES: "true"
+      DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      BATCH_SIZE: 100
+    volumes:
+      - ./data/files/consumer-files/mandaten:/consumer-files/
+    restart: always
+    labels:
+      - "logging=true"
+    logging: *default-logging
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.16
     environment:
-      DCR_SYNC_BASE_URL: "https://dev.harvesting-self-service.lblod.info/"
+      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
       DCR_SYNC_FILES_PATH: "/sync/besluiten/files"
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/BesluitenCacheGraphDump"
@@ -22,90 +114,9 @@ services:
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       BATCH_SIZE: 100
-      DIRECT_DATABASE_ENDPOINT: "http://database:8890/sparql"
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
     labels:
       - "logging=true"
     logging: *default-logging
-  database:
-    image: semtech/mu-authorization:0.6.0-beta.8
-    environment:
-      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
-      ERROR_ON_UNWRITTEN_DATA: "on"
-    volumes:
-      - ./config/authorization:/config
-    labels:
-      - "logging=true"
-
-  dispatcher:
-    image: semtech/mu-dispatcher:2.0.0
-    links:
-      - resources:resource
-    volumes:
-      - ./config/dispatcher:/config
-
-  frontend:
-    image: snenenenene/frontend-burgernabije-besluitendatabank
-    links:
-      - identifier
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
-
-  identifier:
-    image: semtech/mu-identifier:1.9.1
-    environment:
-      SESSION_COOKIE_SECURE: "on"
-      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"}]'
-      DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
-    links:
-      - dispatcher:dispatcher
-    labels:
-      - "logging=true"
-
-  migrations:
-    image: semtech/mu-migrations-service:0.8.0
-    links:
-      - triplestore:database
-    volumes:
-      - ./config/migrations:/data/migrations
-    labels:
-      - "logging=true"
-
-  resources:
-    image: semtech/mu-cl-resources:1.20.0
-    links:
-      - database:database
-    volumes:
-      - ./config/resources:/config
-    labels:
-      - "logging=true"
-
-  triplestore:
-    image: redpencil/virtuoso:1.0.0
-    environment:
-      SPARQL_UPDATE: "true"
-      DEFAULT_GRAPH: "http://mu.semte.ch/application"
-    volumes:
-      - ./data/db:/data
-      - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
-    labels:
-      - "logging=true"
-
-
-  uuid-generation:
-    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git
-    volumes:
-      - ./config/uuid-generation/:/config
-    labels:
-      - "logging=true"
-
-  deltanotifier:
-    image: semtech/mu-delta-notifier
-    volumes:
-      - ./config/delta:/config
-    labels:
-      - "logging=true"

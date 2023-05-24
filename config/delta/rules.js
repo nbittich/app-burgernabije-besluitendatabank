@@ -5,8 +5,6 @@ export default [
         "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
         "http://data.vlaanderen.be/ns/besluit#Zitting",
         "http://data.vlaanderen.be/ns/besluit#Stemming",
-        "http://data.vlaanderen.be/ns/mandaat#Mandataris",
-        "http://www.w3.org/ns/person#Person",
     ].map((type) => ({
         match: {
             predicate: {

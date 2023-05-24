@@ -1,18 +1,15 @@
 version: '3.7'
+
 services:
-  besluiten-consumer:
-    environment:
-      DCR_DISABLE_INITIAL_SYNC: "false" # toggle this in override, leave 'true' in default docker-compose.yml
-    restart: "no"
-  database:
-    restart: "no"
-  dispatcher:
-    ports: 
-      - "80:80"
-    restart: "no"
   identifier:
     ports:
-      - "90:80"
+      - "80:80"
+    restart: "no"
+  dispatcher:
+    restart: "no"
+  frontend:
+    restart: "no"
+  database:
     restart: "no"
   migrations:
     restart: "no"
@@ -22,7 +19,15 @@ services:
     ports:
       - "8890:8890"
     restart: "no"
+  deltanotifier:
+    restart: "no"
   uuid-generation:
     restart: "no"
-  deltanotifier:
+  mandatendatabank-consumer:
+    environment:
+      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+    restart: "no"
+  besluiten-consumer:
+    environment:
+      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
