@@ -40,14 +40,6 @@ services:
       - ./config/authorization:/config
     labels:
       - "logging=true"
-  migrations:
-    image: semtech/mu-migrations-service:0.8.0
-    links:
-      - triplestore:database
-    volumes:
-      - ./config/migrations:/data/migrations
-    labels:
-      - "logging=true"
   resources:
     image: semtech/mu-cl-resources:1.22.2
     links:
@@ -73,11 +65,11 @@ services:
     labels:
       - "logging=true"
   uuid-generation:
-    build: https://github.com/kanselarij-vlaanderen/uuid-generation-service.git#main
+    image: redpencil/uuid-generation:0.2.1
     volumes:
       - ./config/uuid-generation/:/config
-    labels:
-      - "logging=true"
+    links:
+      - triplestore:database
   mandatendatabank-consumer:
     image: lblod/delta-consumer:0.0.16
     environment:
@@ -93,13 +85,34 @@ services:
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
-      BATCH_SIZE: 100
+      BATCH_SIZE: 250
     volumes:
       - ./data/files/consumer-files/mandaten:/consumer-files/
     restart: always
     labels:
       - "logging=true"
     logging: *default-logging
+  op-public-consumer:
+    image: lblod/delta-consumer:0.0.16
+    environment:
+      DCR_SYNC_BASE_URL: "https://organisaties.abb.lblod.info/"
+      DCR_SERVICE_NAME: "op-public-consumer"
+      DCR_SYNC_FILES_PATH: "/sync/public/files"
+      DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/PublicCacheGraphDump"
+      DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/op-public"
+      DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/deltaSync/op-public"
+      DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/op-public-consumer"
+      DCR_KEEP_DELTA_FILES: "true"
+      DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_INITIAL_SYNC: "true"
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
+      BATCH_SIZE: 250
+    volumes:
+      - ./data/files/consumer-files/op-public:/consumer-files/
+    restart: always
+    labels:
+      - "logging=true"
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.16
     environment:
@@ -115,10 +128,10 @@ services:
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
-      BATCH_SIZE: 100
+      BATCH_SIZE: 250
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
-    labels:
+    labels: 
       - "logging=true"
     logging: *default-logging

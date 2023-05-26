@@ -16,11 +16,5 @@
     ],
     "http://data.vlaanderen.be/ns/besluit#Stemming": [
         "http://mu.semte.ch/graphs/public"
-    ],
-    "http://data.vlaanderen.be/ns/mandaat#Mandataris": [
-        "http://mu.semte.ch/graphs/public"
-    ],
-    "http://www.w3.org/ns/person#Person": [
-        "http://mu.semte.ch/graphs/public"
     ]
 }

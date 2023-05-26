@@ -8,10 +8,8 @@ services:
   dispatcher:
     restart: "no"
   frontend:
-    restart: "no"
+    entrypoint: "echo 'service disabled'"
   database:
-    restart: "no"
-  migrations:
     restart: "no"
   resources:
     restart: "no"
@@ -22,12 +20,21 @@ services:
   deltanotifier:
     restart: "no"
   uuid-generation:
+    environment:
+        RUN_CRON_JOBS: "true"
+        CRON_FREQUENCY: "0 * * * *"
+    ports:
+      - "81:80"
     restart: "no"
   mandatendatabank-consumer:
-    environment:
-      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+    # environment:
+    #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+    restart: "no"
+  op-public-consumer:
+    # environment:
+    #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
   besluiten-consumer:
-    environment:
-      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+    # environment:
+    #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
