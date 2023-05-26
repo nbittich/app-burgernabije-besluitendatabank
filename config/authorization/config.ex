@@ -22,7 +22,7 @@ defmodule Acl.UserGroups.Config do
       # // PUBLIC
       %GroupSpec{
         name: "public",
-        useage: [:read, :write, :read_for_write],
+        useage: [:read],
         access: %AlwaysAccessible{},
         graphs: [
           %GraphSpec{
@@ -30,15 +30,9 @@ defmodule Acl.UserGroups.Config do
             constraint: %ResourceConstraint{
               resource_types: []
             }
-          },
-          %GraphSpec{
-            graph: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer",
-            constraint: %ResourceConstraint{
-              resource_types: []
-            }
           }
         ]
-      },      
+      },
       # // CLEANUP
       #
       %GraphCleanup{
