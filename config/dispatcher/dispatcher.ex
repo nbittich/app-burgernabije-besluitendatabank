@@ -57,9 +57,6 @@ defmodule Dispatcher do
   ###############
   # SERVICES
   ###############
-  match "/uuid-generator/*path", @json do
-    Proxy.forward conn, path, "http://uuid-generator/"
-  end
 
   ###############
   # FRONTEND
