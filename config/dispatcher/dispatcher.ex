@@ -64,8 +64,20 @@ defmodule Dispatcher do
   ###############
   # FRONTEND
   ###############
-  get "/*path", @json do
-    Proxy.forward conn, path, "http://frontend/"
+  match "/assets/*path", @html do
+    Proxy.forward conn, path, "http://frontend/assets/"
+  end
+
+  match "/@appuniversum/*path", @html do
+    Proxy.forward conn, path, "http://frontend/@appuniversum/"
+  end
+
+  match "/*path", @html do
+    Proxy.forward conn, [], "http://frontend/index.html"
+  end
+
+  match "/*_path", @html do
+    Proxy.forward conn, [], "http://frontend/index.html"
   end
 
   #################
