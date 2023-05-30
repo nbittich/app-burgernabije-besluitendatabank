@@ -2,7 +2,7 @@ defmodule Dispatcher do
   use Matcher
   define_accept_types [
     html: [ "text/html", "application/xhtml+html" ],
-    json: [ "application/json", "application/vnd.api+json" ]
+    json: [ "application/json", "application/vnd.api+json", "application/sparql-results+json" ]
   ]
 
   @any %{}
@@ -57,6 +57,9 @@ defmodule Dispatcher do
   ###############
   # SERVICES
   ###############
+  post "/sparql/*path", @json do
+    forward conn, path, "http://triplestore:8890/sparql/"
+  end
 
   ###############
   # FRONTEND
