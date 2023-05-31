@@ -23,8 +23,6 @@ services:
     environment:
         RUN_CRON_JOBS: "true"
         CRON_FREQUENCY: "0 * * * *"
-    ports:
-      - "81:80"
     restart: "no"
   mandatendatabank-consumer:
     # environment:
