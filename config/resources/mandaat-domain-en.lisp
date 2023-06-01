@@ -1,3 +1,5 @@
+(in-package :mu-cl-resources)
+
 ;; todo: move to external
 (define-resource board-position-code ()
   :class (s-prefix "ext:BestuursfunctieCode")

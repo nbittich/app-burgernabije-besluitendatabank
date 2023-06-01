@@ -1,3 +1,5 @@
+(in-package :mu-cl-resources)
+
 (define-resource administrative-unit ()
   :class (s-prefix "besluit:Bestuurseenheid")
   :properties `((:name :string ,(s-prefix "skos:prefLabel")))
