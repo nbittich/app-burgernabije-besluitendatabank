@@ -41,7 +41,7 @@ services:
     labels:
       - "logging=true"
   resources:
-    image: semtech/mu-cl-resources:1.22.2
+    image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
     links:
       - database:database
     volumes:

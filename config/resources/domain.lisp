@@ -2,3 +2,6 @@
 
 (read-domain-file "besluit-domain-en.lisp")
 (read-domain-file "mandaat-domain-en.lisp")
+
+(setf *fetch-all-types-in-construct-queries* t)
+
