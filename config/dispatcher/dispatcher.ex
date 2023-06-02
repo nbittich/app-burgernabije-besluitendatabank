@@ -34,6 +34,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resources/agenda-items/"
   end
 
+  get "/governing-bodies/*path", @json do
+    Proxy.forward conn, path, "http://resources/governing-bodies/"
+  end
+
   get "/locations/*path", @json do
     Proxy.forward conn, path, "http://resources/locations/"
   end
