@@ -22,39 +22,39 @@ defmodule Dispatcher do
   ###############
   # RESOURCES
   ###############
-  get "/administrative-units/*path", @json do
+  get "/administrative-units/*path", @any do
     Proxy.forward conn, path, "http://resources/administrative-units/"
   end
 
-  get "/agenda-item-handlings/*path", @json do
+  get "/agenda-item-handlings/*path", @any do
     Proxy.forward conn, path, "http://resources/agenda-item-handlings/"
   end
 
-  get "/agenda-items/*path", @json do
+  get "/agenda-items/*path", @any do
     Proxy.forward conn, path, "http://resources/agenda-items/"
   end
 
-  get "/governing-bodies/*path", @json do
+  get "/governing-bodies/*path", @any do
     Proxy.forward conn, path, "http://resources/governing-bodies/"
   end
 
-  get "/locations/*path", @json do
+  get "/locations/*path", @any do
     Proxy.forward conn, path, "http://resources/locations/"
   end
 
-  get "/mandataries/*path", @json do
+  get "/mandataries/*path", @any do
     Proxy.forward conn, path, "http://resources/mandataries/"
   end
 
-  get "/resolutions/*path", @json do
+  get "/resolutions/*path", @any do
     Proxy.forward conn, path, "http://resources/resolutions/"
   end
 
-  get "/sessions/*path", @json do
+  get "/sessions/*path", @any do
     Proxy.forward conn, path, "http://resources/sessions/"
   end
 
-  get "/votes/*path", @json do
+  get "/votes/*path", @any do
     Proxy.forward conn, path, "http://resources/votes/"
   end
 
