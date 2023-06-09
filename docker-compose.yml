@@ -24,7 +24,7 @@ services:
     volumes:
       - ./config/dispatcher:/config
   frontend:
-    build: https://github.com/lblod/frontend-burgernabije-besluitendatabank.git#342801ecc3af0f6804fe6763e258eb7c684d8b9b
+    image: lblod/frontend-burgernabije-besluitendatabank:latest
     links:
       - identifier
     restart: always
