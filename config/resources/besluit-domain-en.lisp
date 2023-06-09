@@ -91,8 +91,9 @@
 
 (define-resource location ()
   :class (s-prefix "prov:Location")
-  :properties `((:label :string ,(s-prefix "rdfs:label"))
-                (:niveau :string, (s-prefix "ext:werkingsgebiedNiveau")))
+  ;; use s-url until we know what todo with rdfs without https
+  :properties `((:label :string ,(s-url "http://www.w3.org/2000/01/rdf-schema#label"))
+                (:niveau :string , (s-prefix "ext:werkingsgebiedNiveau")))
   :has-many `((administrative-unit :via ,(s-prefix "besluit:werkingsgebied")
                                    :inverse t
                                    :as "administrative-units"))
