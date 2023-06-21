@@ -31,6 +31,22 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+  cache:
+    image: semtech/mu-cache:2.0.2
+    links:
+      - resources:backend
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  resources:
+    image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
+    links:
+      - database:database
+    volumes:
+      - ./config/resources:/config
+    labels:
+      - "logging=true"
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
@@ -38,14 +54,6 @@ services:
       ERROR_ON_UNWRITTEN_DATA: "on"
     volumes:
       - ./config/authorization:/config
-    labels:
-      - "logging=true"
-  resources:
-    image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
-    links:
-      - database:database
-    volumes:
-      - ./config/resources:/config
     labels:
       - "logging=true"
   triplestore:

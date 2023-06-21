@@ -39,7 +39,7 @@ defmodule Dispatcher do
   end
 
   get "/locations/*path", @any do
-    Proxy.forward conn, path, "http://resources/locations/"
+    Proxy.forward conn, path, "http://cache/locations/"
   end
 
   get "/mandataries/*path", @any do

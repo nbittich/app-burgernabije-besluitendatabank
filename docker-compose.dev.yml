@@ -9,9 +9,11 @@ services:
     restart: "no"
   frontend:
     entrypoint: "echo 'service disabled'"
-  database:
+  cache:
     restart: "no"
   resources:
+    restart: "no"
+  database:
     restart: "no"
   triplestore:
     ports:
