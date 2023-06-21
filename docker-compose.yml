@@ -41,6 +41,8 @@ services:
     logging: *default-logging
   resources:
     image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
+    environment:
+        CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     links:
       - database:database
     volumes:
