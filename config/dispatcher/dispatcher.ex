@@ -23,39 +23,39 @@ defmodule Dispatcher do
   # RESOURCES
   ###############
   get "/administrative-units/*path", @any do
-    Proxy.forward conn, path, "http://resources/administrative-units/"
+    Proxy.forward conn, path, "http://cache/administrative-units/"
   end
 
   get "/agenda-item-handlings/*path", @any do
-    Proxy.forward conn, path, "http://resources/agenda-item-handlings/"
+    Proxy.forward conn, path, "http://cache/agenda-item-handlings/"
   end
 
   get "/agenda-items/*path", @any do
-    Proxy.forward conn, path, "http://resources/agenda-items/"
+    Proxy.forward conn, path, "http://cache/agenda-items/"
   end
 
   get "/governing-bodies/*path", @any do
-    Proxy.forward conn, path, "http://resources/governing-bodies/"
+    Proxy.forward conn, path, "http://cache/governing-bodies/"
   end
 
   get "/locations/*path", @any do
-    Proxy.forward conn, path, "http://resources/locations/"
+    Proxy.forward conn, path, "http://cache/locations/"
   end
 
   get "/mandataries/*path", @any do
-    Proxy.forward conn, path, "http://resources/mandataries/"
+    Proxy.forward conn, path, "http://cache/mandataries/"
   end
 
   get "/resolutions/*path", @any do
-    Proxy.forward conn, path, "http://resources/resolutions/"
+    Proxy.forward conn, path, "http://cache/resolutions/"
   end
 
   get "/sessions/*path", @any do
-    Proxy.forward conn, path, "http://resources/sessions/"
+    Proxy.forward conn, path, "http://cache/sessions/"
   end
 
   get "/votes/*path", @any do
-    Proxy.forward conn, path, "http://resources/votes/"
+    Proxy.forward conn, path, "http://cache/votes/"
   end
 
   ###############
