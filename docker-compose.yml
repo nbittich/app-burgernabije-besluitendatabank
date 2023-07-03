@@ -93,7 +93,7 @@ services:
     links:
       - triplestore:database
   mandatendatabank-consumer:
-    image: lblod/delta-consumer:0.0.18
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
       DCR_SERVICE_NAME: "mandatendatabank-consumer"
@@ -115,7 +115,7 @@ services:
       - "logging=true"
     logging: *default-logging
   op-public-consumer:
-    image: lblod/delta-consumer:0.0.18
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://organisaties.abb.lblod.info/"
       DCR_SERVICE_NAME: "op-public-consumer"
@@ -136,7 +136,7 @@ services:
     labels:
       - "logging=true"
   besluiten-consumer:
-    image: lblod/delta-consumer:0.0.18
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
