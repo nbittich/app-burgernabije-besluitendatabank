@@ -2,6 +2,7 @@
 backend/
 frontend/
 data/
+data_*
 
 docker-compose.override.yml
 
