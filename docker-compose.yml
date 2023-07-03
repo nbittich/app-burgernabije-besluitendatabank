@@ -49,6 +49,18 @@ services:
       - ./config/resources:/config
     labels:
       - "logging=true"
+  migrations:
+    image: semtech/mu-migrations-service:0.8.0
+    links:
+      - triplestore:database
+    environment:
+      MU_SPARQL_TIMEOUT: "300"
+    volumes:
+      - ./config/migrations:/data/migrations
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
