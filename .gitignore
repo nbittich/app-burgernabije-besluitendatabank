@@ -7,3 +7,6 @@ data_*
 docker-compose.override.yml
 
 .DS_STORE
+.env
+
+/config/migrations/local/
