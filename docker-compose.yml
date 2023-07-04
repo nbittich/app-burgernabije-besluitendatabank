@@ -49,6 +49,18 @@ services:
       - ./config/resources:/config
     labels:
       - "logging=true"
+  migrations:
+    image: semtech/mu-migrations-service:0.8.0
+    links:
+      - triplestore:database
+    environment:
+      MU_SPARQL_TIMEOUT: "300"
+    volumes:
+      - ./config/migrations:/data/migrations
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
@@ -81,7 +93,7 @@ services:
     links:
       - triplestore:database
   mandatendatabank-consumer:
-    image: lblod/delta-consumer:0.0.16
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
       DCR_SERVICE_NAME: "mandatendatabank-consumer"
@@ -92,6 +104,7 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/mandatendatabank-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
@@ -103,7 +116,7 @@ services:
       - "logging=true"
     logging: *default-logging
   op-public-consumer:
-    image: lblod/delta-consumer:0.0.16
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://organisaties.abb.lblod.info/"
       DCR_SERVICE_NAME: "op-public-consumer"
@@ -114,7 +127,8 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/op-public-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
-      DCR_DISABLE_INITIAL_SYNC: "true"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
+      DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
@@ -124,7 +138,7 @@ services:
     labels:
       - "logging=true"
   besluiten-consumer:
-    image: lblod/delta-consumer:0.0.16
+    image: lblod/delta-consumer:0.0.19
     environment:
       DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
@@ -135,6 +149,7 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/besluiten-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
@@ -142,6 +157,6 @@ services:
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
-    labels: 
+    labels:
       - "logging=true"
     logging: *default-logging
