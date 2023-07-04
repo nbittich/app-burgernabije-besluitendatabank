@@ -65,7 +65,7 @@ In some cases, you may need to reset the data due to unforeseen issues. The simp
 
 ##### besluiten-consumer
 
-- step 1:  ensure the app is running and all migrations ran.
+- step 1: ensure the app is running and all migrations ran.
 - step 2: ensure the besluiten-consumer stopped syncing, `docker-compose.override.yml` should AT LEAST contain the following information
 ```yml
 version: '3.7'
@@ -114,7 +114,7 @@ services:
 ##### op-public-consumer & mandatendatabank-consumer
 As of the time of writing, there is some overlap between the two data producers due to practical reasons. This issue will be resolved eventually. For the time being, if re-synchronization is required, it's advisable to re-sync both consumers.
 The procedure is identical to the one for besluiten-consumer, but with a bit of an extra synchronsation hassle. 
-For both consumers you will need to first run steps 1 up to and including step 5. Once these setps completed for both consumers, you can proceed and start ingesting the data again.
+For both consumers you will need to first run steps 1 up to and including step 5. Once these steps completed for both consumers, you can proceed and start ingesting the data again.
 
 #### What endpoints can be used?
 ##### besluiten-consumer

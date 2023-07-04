@@ -104,6 +104,7 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/mandatendatabank-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
@@ -126,7 +127,8 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/op-public-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
-      DCR_DISABLE_INITIAL_SYNC: "true"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
+      DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
@@ -147,6 +149,7 @@ services:
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/besluiten-consumer"
       DCR_KEEP_DELTA_FILES: "true"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
+      DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"

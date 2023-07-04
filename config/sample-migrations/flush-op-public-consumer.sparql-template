@@ -8,7 +8,7 @@ WHERE {
   VALUES ?type {
     <http://data.lblod.info/vocabularies/erediensten/BestuurVanDeEredienst>
     <http://data.lblod.info/vocabularies/erediensten/CentraalBestuurVanDeEredienst>
-    <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>
+    <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> # Note: this might eventually come from mandatendatabank-consumer
     <http://data.lblod.info/vocabularies/erediensten/RepresentatiefOrgaan>
     <http://data.lblod.info/vocabularies/erediensten/BetrokkenLokaleBesturen>
     <http://data.lblod.info/vocabularies/erediensten/PositieBedienaar>
@@ -16,18 +16,16 @@ WHERE {
     <http://www.w3.org/ns/locn#Address>
     <http://schema.org/ContactPoint>
     <http://www.w3.org/ns/adms#Identifier>
-    <http://www.w3.org/ns/adms#Identifier>
-    <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>
     <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>
     <http://lblod.data.gift/vocabularies/organisatie/BestuurseenheidClassificatieCode>
-    <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>
+    <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> # Note: this might eventually come from mandatendatabank-consumer
     <http://lblod.data.gift/vocabularies/organisatie/TypeEredienst>
     <http://lblod.data.gift/vocabularies/organisatie/BestuursorgaanClassificatieCode>
     <http://www.w3.org/ns/org#ChangeEvent>
     <http://lblod.data.gift/vocabularies/organisatie/Veranderingsgebeurtenis>
     <http://lblod.data.gift/vocabularies/organisatie/OrganisatieStatusCode>
     <http://lblod.data.gift/vocabularies/organisatie/TypeVestiging>
-    <http://data.vlaanderen.be/ns/mandaat#Mandaat>
+    <http://data.vlaanderen.be/ns/mandaat#Mandaat> # Note: this might eventually come from mandatendatabank-consumer
     <http://data.lblod.info/vocabularies/leidinggevenden/Bestuursfunctie>
   }
 

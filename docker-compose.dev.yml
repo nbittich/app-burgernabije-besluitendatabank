@@ -30,13 +30,16 @@ services:
     restart: "no"
   mandatendatabank-consumer:
     # environment:
+    #   DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
     #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
   op-public-consumer:
     # environment:
+    #   DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
     #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
   besluiten-consumer:
     # environment:
+    #   DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
     #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
