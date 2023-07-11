@@ -3,6 +3,7 @@ backend/
 frontend/
 data/
 data_*
+.vscode/
 
 docker-compose.override.yml
 
