@@ -107,7 +107,7 @@
                 ;; (:motivation :language-string ,(s-prefix "besluit:motivering"))
                 (:publication-date :date ,(s-prefix "eli:date_publication"))
                 ;; broken: mixed type (langString, string, Literal) + Literal not supported by mu-cl-resources 
-                (:value :string ,(s-prefix "prov:value"))
+                ;; (:value :string ,(s-prefix "prov:value"))
                 (:language :url ,(s-prefix "eli:language"))
                 (:title :string ,(s-prefix "eli:title"))
                 (:score :float ,(s-prefix "nao:score")))

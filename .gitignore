@@ -5,7 +5,7 @@ data/
 data_*
 .vscode/
 
-docker-compose.override.yml
+docker-compose.override.yml*
 
 .DS_STORE
 .env
