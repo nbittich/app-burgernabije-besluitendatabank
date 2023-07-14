@@ -30,14 +30,14 @@
                 (:type :uri-set ,(s-prefix "besluit:Agendapunt.type"))
                 (:alternate-link :int ,(s-prefix "owl:sameAs"))
                 )
+  :has-many `((session :via ,(s-prefix "besluit:behandelt")
+                      :inverse t
+                      :as "sessions"))
   :has-one `((agenda-item :via ,(s-prefix "besluit:aangebrachtNa")
                           :as "added-after")
              (agenda-item-handling :via ,(s-prefix "dct:subject")
                                    :inverse t
-                                   :as "handled-by")
-             (session :via ,(s-prefix "besluit:behandelt")
-                      :inverse t
-                      :as "session"))
+                                   :as "handled-by"))
   :resource-base (s-url "http://data.lblod.info/id/agendapunten/")
   :features '(include-uri)
   :on-path "agenda-items")
@@ -72,19 +72,23 @@
                                   :as "administrative-unit")
   ;;            (bestuursorgaan-classificatie-code :via ,(s-prefix "besluit:classificatie")
   ;;                                               :as "classificatie")
-  ;;            (bestuursorgaan :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
-  ;;                            :as "is-tijdsspecialisatie-van")
+             (governing-body :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
+                             :as "is-time-specialization-of")
   ;;            (rechtstreekse-verkiezing :via ,(s-prefix "mandaat:steltSamen")
   ;;                                     :inverse t
   ;;                                     :as "wordt-samengesteld-door")
   )
-  ;; :has-many `((bestuursorgaan :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
-  ;;                      :inverse t
-  ;;                      :as "heeft-tijdsspecialisaties")
+  :has-many `((governing-body :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
+                       :inverse t
+                       :as "has-time-specializations")
+              (session :via ,(s-prefix "besluit:isGehoudenDoor")
+                       :inverse t
+                       :as "sessions")
   ;;             (mandaat :via ,(s-prefix "org:hasPost")
   ;;                      :as "bevat")
   ;;             (bestuursfunctie :via ,(s-prefix "lblodlg:heeftBestuursfunctie")
-  ;;                              :as "bevat-bestuursfunctie"))
+  ;;                              :as "bevat-bestuursfunctie")
+  )
   :resource-base (s-url "http://data.lblod.info/id/bestuursorganen/")
   :features '(include-uri)
   :on-path "governing-bodies")
