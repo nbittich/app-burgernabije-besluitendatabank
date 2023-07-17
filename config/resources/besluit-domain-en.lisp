@@ -166,7 +166,7 @@
                 (:title :string ,(s-prefix "dct:title"))
                 ;; besluit:gevolg and besluit:onderwerp has type broken in harvester
                 ;; (:consequence :language-string ,(s-prefix "besluit:gevolg"))
-                ;; (:subject :language-string ,(s-prefix "besluit:onderwerp"))
+                (:subject :language-string ,(s-prefix "besluit:onderwerp"))
                 )
   :has-many `((mandatary :via ,(s-prefix "besluit:heeftAanwezige")
                          :as "has-presents")
