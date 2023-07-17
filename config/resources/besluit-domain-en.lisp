@@ -111,7 +111,7 @@
                 ;; (:motivation :language-string ,(s-prefix "besluit:motivering"))
                 (:publication-date :date ,(s-prefix "eli:date_publication"))
                 ;; broken: mixed type (langString, string, Literal) + Literal not supported by mu-cl-resources 
-                ;; (:value :string ,(s-prefix "prov:value"))
+                (:value :string ,(s-prefix "prov:value"))
                 (:language :url ,(s-prefix "eli:language"))
                 (:title :string ,(s-prefix "eli:title"))
                 (:score :float ,(s-prefix "nao:score")))
@@ -166,7 +166,7 @@
                 (:title :string ,(s-prefix "dct:title"))
                 ;; besluit:gevolg and besluit:onderwerp has type broken in harvester
                 ;; (:consequence :language-string ,(s-prefix "besluit:gevolg"))
-                ;; (:subject :language-string ,(s-prefix "besluit:onderwerp"))
+                (:subject :language-string ,(s-prefix "besluit:onderwerp"))
                 )
   :has-many `((mandatary :via ,(s-prefix "besluit:heeftAanwezige")
                          :as "has-presents")
