@@ -74,7 +74,7 @@ defmodule Dispatcher do
   # SEARCH
   ###############################################################
 
-  match "/search/*path", %{  accept: %{ json: true }, layer: :api_services} do
+  match "/search/*path", @json do
     Proxy.forward conn, path, "http://search/"
   end
 
