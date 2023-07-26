@@ -70,6 +70,14 @@ defmodule Dispatcher do
     Proxy.forward conn, [], "http://uuid-generation/run"
   end
 
+  ###############################################################
+  # SEARCH
+  ###############################################################
+
+  match "/search/*path", %{  accept: %{ json: true }, layer: :api_services} do
+    Proxy.forward conn, path, "http://search/"
+  end
+
   ###############
   # FRONTEND
   ###############

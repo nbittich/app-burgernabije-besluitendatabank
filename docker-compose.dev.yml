@@ -7,8 +7,8 @@ services:
     restart: "no"
   dispatcher:
     restart: "no"
-  frontend:
-    entrypoint: "echo 'service disabled'"
+      # frontend:
+      #entrypoint: "echo 'service disabled'"
   cache:
     restart: "no"
   resources:
