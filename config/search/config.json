@@ -1,20 +1,18 @@
 {
   "automatic_index_updates": true,
   "persist_indexes": true,
-  "number_of_threads": 6,
+  "number_of_threads": 8,
   "eager_indexing_groups": [
     [
       {
-        "variables": [],
-        "name": "acmidm-worship-editeerder"
-      },
+        "name": "public",
+        "variables": []
+      }
+    ],
+    [
       {
-        "variables": [],
-        "name": "clean"
-      },
-      {
-        "variables": [],
-        "name": "public"
+        "name": "clean",
+        "variables": []
       }
     ]
   ],
@@ -43,41 +41,41 @@
       "properties": {
         "location_id": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
-          "^http://data.vlaanderen.be/ns/besluit#bestuurt",
+          "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://mu.semte.ch/vocabularies/core/uuid"
         ],
         "time_specialization_location_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
-          "^http://data.vlaanderen.be/ns/besluit#bestuurt",
+          "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://www.w3.org/2000/01/rdf-schema#label"
         ],
         "governing_body_location_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "^http://data.vlaanderen.be/ns/besluit#bestuurt",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://www.w3.org/2000/01/rdf-schema#label"
         ],
         "time_specialization_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
           "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
         "governing_body_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
         "session_planned_start": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "^http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/besluit#geplandeStart"
         ],
         "session_started_at": [
@@ -155,13 +153,28 @@
             }
           },
           "session_planned_start": {
-            "type": "date"
+            "type": "date",
+            "fields": {
+              "field": {
+                "type": "date"
+              }
+            }
           },
           "session_started_at": {
-            "type": "date"
+            "type": "date",
+            "fields": {
+              "field": {
+                "type": "date"
+              }
+            }
           },
           "session_ended_at": {
-            "type": "date"
+            "type": "date",
+            "fields": {
+              "field": {
+                "type": "date"
+              }
+            }
           }
         }
       }
