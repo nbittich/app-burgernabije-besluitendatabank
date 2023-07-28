@@ -75,7 +75,6 @@
         ],
         "session_planned_start": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/besluit#geplandeStart"
         ],
         "session_started_at": [
