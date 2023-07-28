@@ -17,10 +17,13 @@ docker-compose up --detach
 ```
 
 ### Sync data external data consumers
-The procedure below describes how to set up the sync for besluiten-consumer.
-The procedures should be the similar for `op-public-consumer` and `mandatendatabank-consumer`.
+The procedure below describes how to set up the sync for besluiten-consumer. 
+The procedures should be the similar for `op-public-consumer` and `mandatendatabank-consumer`. If there are variations in the steps for these consumers, it will be noted.
 
-#### From scratch
+The synchronization of external data sources is a structured process divided into three key stages. The first stage, known as 'initial sync', requires manual interventions primarily due to performance considerations. Following this, there's a post-processing stage, where depending on the delta-consumer stream, it may be necessary to initiate certain background processes to ensure system consistency. The final stage involves transitioning the system to the 'normal operation' mode, wherein all functions are designed to be executed automatically.
+
+##### 1. Initial sync
+##### From scratch
 Setting up the sync should happen work with the following steps:
 
 - ensure docker-compose.override.yml has AT LEAST the following information
@@ -60,10 +63,10 @@ services:
   Data should be ingesting.
   Check the logs `drc logs -f --tail=200 besluiten-consumer`
 
-#### In case of a re-sync
+##### In case of a re-sync
 In some cases, you may need to reset the data due to unforeseen issues. The simplest method is to entirely flush the triplestore and start afresh. However, this can be time-consuming, and if the app possesses an internal state that can't be recreated from external sources, a more granular approach would be necessary. We will outline this approach here. Currently, it involves a series of manual steps, but we hope to enhance the level of automation in the future.
 
-##### besluiten-consumer
+###### besluiten-consumer
 
 - step 1: ensure the app is running and all migrations ran.
 - step 2: ensure the besluiten-consumer stopped syncing, `docker-compose.override.yml` should AT LEAST contain the following information
@@ -111,11 +114,37 @@ services:
 - step 8: Run `docker-compose up -d`
 - step 9: This might take a while if `docker-compose logs besluiten-consumer |grep success Returns: Initial sync http://redpencil.data.gift/id/job/URI has been successfully run`; you should be good. (Your computer will also stop making noise)
 
-##### op-public-consumer & mandatendatabank-consumer
+###### op-public-consumer & mandatendatabank-consumer
 As of the time of writing, there is some overlap between the two data producers due to practical reasons. This issue will be resolved eventually. For the time being, if re-synchronization is required, it's advisable to re-sync both consumers.
 The procedure is identical to the one for besluiten-consumer, but with a bit of an extra synchronsation hassle. 
 For both consumers you will need to first run steps 1 up to and including step 5. Once these steps completed for both consumers, you can proceed and start ingesting the data again.
 
+#### 2. post-processing
+For all delta-streams, you'll have to run `docker-compose restart resources cache`.
+##### besluiten-consumer
+Currently, no extra steps to perform, but in a very near future, you might want to trigger a full mu-serach index.
+For instructions, ask around.
+###### op-public-consumer & mandatendatabank-consumer
+No specific steps necessary.
+#### 3. switch to 'normal operation' mode
+Essentially, we want to force the data to go through mu-auth again, which is responsible for maintaining the cached data in sync. So ensure in `docker-compose.override.yml` the following.
+```yml
+version: '3.7'
+
+services:
+#(...) there might be other services
+
+  besluiten-consumer:
+    environment:
+      DCR_DISABLE_DELTA_INGEST: "false"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
+     # (...) there might be other information e.g. about the endpoint
+
+# (...) there might be other information
+```
+Again, a the time of writing, the same configuration is valid for the other consumers.
+After updating `docker-compose.override.yml`, don't forget `docker-compose up -d`
 #### What endpoints can be used?
 ##### besluiten-consumer
 
