@@ -46,6 +46,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/mandataries/"
   end
 
+  get "/memberships/*path", @any do
+    Proxy.forward conn, path, "http://cache/memberships/"
+  end
+
   get "/resolutions/*path", @any do
     Proxy.forward conn, path, "http://cache/resolutions/"
   end
