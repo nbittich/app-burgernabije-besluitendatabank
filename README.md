@@ -122,8 +122,9 @@ For both consumers you will need to first run steps 1 up to and including step 5
 #### 2. post-processing
 For all delta-streams, you'll have to run `docker-compose restart resources cache`.
 ##### besluiten-consumer
-Currently, no extra steps to perform, but in a very near future, you might want to trigger a full mu-serach index.
-For instructions, ask around.
+In order to trigger a full mu-search reindex, you can execute `sudo bash ./scripts/reset-elastic.sh` (the stack must be up).
+It takes a while to reindex, please consider using a small dataset to speed it up.
+
 ###### op-public-consumer & mandatendatabank-consumer
 No specific steps necessary.
 #### 3. switch to 'normal operation' mode
