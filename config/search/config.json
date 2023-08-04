@@ -62,7 +62,7 @@
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://www.w3.org/2000/01/rdf-schema#label"
         ],
-        "time_specialization_name": [
+        "abstract_governing_body_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
