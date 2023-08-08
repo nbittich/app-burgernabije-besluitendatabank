@@ -164,8 +164,7 @@
                 (:number-of-proponents :string ,(s-prefix "besluit:aantalVoorstanders"))
                 (:secret :boolean ,(s-prefix "besluit:geheim"))
                 (:title :string ,(s-prefix "dct:title"))
-                ;; besluit:gevolg and besluit:onderwerp has type broken in harvester
-                ;; (:consequence :language-string ,(s-prefix "besluit:gevolg"))
+                (:consequence :language-string ,(s-prefix "besluit:gevolg"))
                 (:subject :language-string ,(s-prefix "besluit:onderwerp"))
                 )
   :has-many `((mandatary :via ,(s-prefix "besluit:heeftAanwezige")
