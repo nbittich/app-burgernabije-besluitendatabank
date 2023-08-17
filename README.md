@@ -1,20 +1,68 @@
 # Burgernabije Besluitendatabank (back-end)
 
-[The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a site that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
+[The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
+
+This project has different important moving parts:
+- The harvester. This processes government-provided data into consumable [data endpoints, which you can view here](#what-endpoints-can-be-used)
+- The back-end (this repository). This is a docker-compose configuration that combines the front-end together with other services.
+- The front-end (which is available in [the frontend-burgernabije-besluitendatabank repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)). This is an Ember frontend 
+
 
 You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank), and the [back-end](https://github.com/lblod/frontend-burgernabije-besluitendatabank) here. The front-end repo only contains front-end specific information, back-and and general project info will be added here.
 
-## How-To
+
+
+## Tutorials
+You can run this app in a few different ways
+- Only run the front-end and use the existing back-end. [Instructions for this can be found in the frontend repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)
+- Run the back-end and run your own consumers. [Instructions for this are found below](#basic-setup)
+
 
 **Pre-requisites**: Docker & Docker-Compose installed. Some parts of the tutorials may use drc as an alias for docker-compose
 
-### Setup
-
+### Basic setup
+First, clone the repository
 ```bash
 git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
 cd app-burgernabije-besluitendatabank.git
-docker-compose up --detach
 ```
+
+#### Selecting endpoints
+[You can view the existing endpoints here](#what-endpoints-can-be-used)
+
+```yml
+services:
+  mandatendatabank-consumer:
+   environment:
+      DCR_SYNC_BASE_URL: "https://example.com/"
+  op-public-consumer:
+   environment:
+      DCR_SYNC_BASE_URL: "https://example.com/"
+  besluiten-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://example.com/"
+```
+
+#### (Optional) Set uuid-generation cronjob
+```yml
+services:
+  uuid-generation:
+    environment:
+      RUN_CRON_JOBS: "true"
+      CRON_FREQUENCY: "0 * * * *"
+```
+
+#### (Optional) Enable Plausible Analytics
+```yml
+services:
+  frontend:
+    environment:
+      EMBER_PLAUSIBLE_APIHOST: "https://example.com"
+      EMBER_PLAUSIBLE_DOMAIN: "example.com"
+```
+
+Then start the server using `docker-compose up --detach`
+
 
 ### Sync data external data consumers
 The procedure below describes how to set up the sync for besluiten-consumer. 
