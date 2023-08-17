@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  identifier:
+    labels:
+      - "logging=true"
+  uuid-generation:
+    environment:
+      RUN_CRON_JOBS: "true"
+      CRON_FREQUENCY: "0 * * * *"
+    labels:
+      - "logging=true"
+      
+  mandatendatabank-consumer:
+    environment:
+      DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
+      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+      DCR_SYNC_BASE_URL: "MANDATENDATABANK_URL"
+
+  op-public-consumer:
+    environment:
+      DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
+      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+      DCR_SYNC_BASE_URL: "OP_PUBLIC_URL"
+
+  besluiten-consumer:
+    environment:
+      DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
+      DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true' # mu-auth gets stuck on some large string triples
+      DCR_SYNC_BASE_URL: "BESLUITEN_URL"
+ 
