@@ -9,12 +9,14 @@ else
   drc="docker compose "
 fi
 
-
-echo "Cloning repository..."
-git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
-echo "Moving into folder..."
-cd app-burgernabije-besluitendatabank
-
+if test -f "docker-compose.yml"; then
+    echo "Found local installation, continuing..."
+else
+  echo "Cloning repository..."
+  git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
+  echo "Moving into folder..."
+  cd app-burgernabije-besluitendatabank
+fi
 
 echo "Running initial sync..."
 cp docker-compose.override.example.yml docker-compose.override.yml
@@ -57,7 +59,6 @@ do
     esac
 done
 
-echo $MANDATENDATABANK_URL
 
 sed -i "s/MANDATENDATABANK_URL/${MANDATENDATABANK_URL//\//\\/}/" docker-compose.override.yml
 sed -i "s/OP_PUBLIC_URL/${OP_PUBLIC_URL//\//\\/}/g" docker-compose.override.yml
@@ -67,21 +68,17 @@ sed -i "s/BESLUITEN_URL/${BESLUITEN_URL//\//\\/}/g" docker-compose.override.yml
 read -p "Enable plausible analytics? [y/N]: " enableplausible
 if [[ $enableplausible =~ ^[Yy] ]]
 then
-echo "Configuring plausible analytics..."
-read -p "Plausible API host: " EMBER_PLAUSIBLE_APIHOST
-read -p "Plausible domain: " EMBER_PLAUSIBLE_DOMAIN
+  echo "Configuring plausible analytics..."
+  read -p "Plausible API host: " EMBER_PLAUSIBLE_APIHOST
+  read -p "Plausible domain: " EMBER_PLAUSIBLE_DOMAIN
 
 
 
 
-sed -i "s/services:/services:\n  frontend:\n    environment:\n      EMBER_PLAUSIBLE_APIHOST: \"$EMBER_PLAUSIBLE_APIHOST\"\n      EMBER_PLAUSIBLE_DOMAIN: \"$EMBER_PLAUSIBLE_DOMAIN\"\n/" docker-compose.override.yml
-
-
+  sed -i "s/services:/services:\n  frontend:\n    environment:\n      EMBER_PLAUSIBLE_APIHOST: \"$EMBER_PLAUSIBLE_APIHOST\"\n      EMBER_PLAUSIBLE_DOMAIN: \"$EMBER_PLAUSIBLE_DOMAIN\"\n/" docker-compose.override.yml
 fi
 
 
-
 echo "Running app-burgernabije-besluitendatabank..."
-$drc -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.dev.yml up
+$drc -f docker-compose.yml -f docker-compose.override.yml
 
-echo 
