@@ -3,7 +3,7 @@
 [The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
 
 This project has different important moving parts:
-- The harvester. This processes government-provided data into consumable [data endpoints, which you can view here](#what-endpoints-can-be-used)
+- The harvester (which is available in [the app-lblod-harvester repository](https://github.com/lblod/app-lblod-harvester)). This processes government-provided data into consumable [data endpoints, which you can view here](#what-endpoints-can-be-used)
 - The back-end (this repository). This is a docker-compose configuration that combines the front-end together with other services.
 - The front-end (which is available in [the frontend-burgernabije-besluitendatabank repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)). This is an Ember frontend 
 
@@ -15,8 +15,7 @@ You can check out more info on besluitendatabanken [here](https://lokaalbestuur.
 ## Tutorials
 You can run this app in a few different ways
 - Only run the front-end and use the existing back-end. [Instructions for this can be found in the frontend repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)
-- Run the back-end and run your own consumers. [Instructions for this are found below](#basic-setup)
-
+- Run the back-end with your own consumers & front-end included. [Instructions for this are found below](#basic-setup)
 
 **Pre-requisites**: Docker & Docker-Compose installed. Some parts of the tutorials may use drc as an alias for docker-compose
 
