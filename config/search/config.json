@@ -47,7 +47,7 @@
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://mu.semte.ch/vocabularies/core/uuid"
         ],
-        "time_specialization_location_name": [
+        "abstract_governing_body_location_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
