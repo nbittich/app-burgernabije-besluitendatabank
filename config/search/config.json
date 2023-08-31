@@ -115,7 +115,7 @@
               }
             }
           },
-          "time_specialization_location_name": {
+          "abstract_governing_body_location_name": {
             "type": "text",
             "fields": {
               "field": {
@@ -133,7 +133,7 @@
               }
             }
           },
-          "time_specialization_name": {
+          "abstract_governing_body_name": {
             "type": "text",
             "fields": {
               "field": {
