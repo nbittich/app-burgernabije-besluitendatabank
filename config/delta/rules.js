@@ -28,16 +28,38 @@ export default [
     })),
     {
         match: {
-          subject: { }
+            predicate: {
+                type: 'uri',
+                value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+            },
+            object: {
+                type: 'uri',
+                value: "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+
+            }
         },
         callback: {
-          url: "http://resources/.mu/delta",
-          method: "POST"
+            url: 'http://search/update',
+            method: 'POST'
         },
         options: {
-          resourceFormat: "v0.0.1",
-          gracePeriod: 250,
-          ignoreFromSelf: true
+            resourceFormat: "v0.0.1",
+            gracePeriod: 10000,
+            ignoreFromSelf: true
         }
-      }
+    },
+    {
+        match: {
+            subject: {}
+        },
+        callback: {
+            url: "http://resources/.mu/delta",
+            method: "POST"
+        },
+        options: {
+            resourceFormat: "v0.0.1",
+            gracePeriod: 250,
+            ignoreFromSelf: true
+        }
+    }
 ]
