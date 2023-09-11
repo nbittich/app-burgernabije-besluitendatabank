@@ -173,6 +173,8 @@ services:
       - ./config/search:/config
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   elasticsearch:
     image: semtech/mu-search-elastic-backend:1.0.1
     volumes:
