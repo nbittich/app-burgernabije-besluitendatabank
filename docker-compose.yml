@@ -15,14 +15,16 @@ services:
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
     links:
       - dispatcher:dispatcher
-    labels:
-      - "logging=true"
+    restart: always
+    logging: *default-logging
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
     links:
       - resources:resource
     volumes:
       - ./config/dispatcher:/config
+    restart: always
+    logging: *default-logging
   frontend:
     image: lblod/frontend-burgernabije-besluitendatabank:latest
     links:
@@ -35,8 +37,6 @@ services:
     image: semtech/mu-cache:2.0.2
     links:
       - resources:backend
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
   resources:
@@ -47,6 +47,8 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+    restart: always
+    logging: *default-logging
     labels:
       - "logging=true"
   migrations:
@@ -57,8 +59,6 @@ services:
       MU_SPARQL_TIMEOUT: "300"
     volumes:
       - ./config/migrations:/data/migrations
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
   database:
@@ -70,6 +70,8 @@ services:
       - ./config/authorization:/config
     labels:
       - "logging=true"
+    restart: always
+    logging: *default-logging
   triplestore:
     image: redpencil/virtuoso:1.0.0
     environment:
@@ -80,18 +82,22 @@ services:
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
     labels:
       - "logging=true"
+    restart: always
+    logging: *default-logging
   deltanotifier:
     image: semtech/mu-delta-notifier
     volumes:
       - ./config/delta:/config
-    labels:
-      - "logging=true"
+    restart: always
+    logging: *default-logging
   uuid-generation:
     image: redpencil/uuid-generation:0.2.1
     volumes:
       - ./config/uuid-generation/:/config
     links:
       - triplestore:database
+    restart: always
+    logging: *default-logging
   mandatendatabank-consumer:
     image: lblod/delta-consumer:0.0.20
     environment:
@@ -112,8 +118,6 @@ services:
     volumes:
       - ./data/files/consumer-files/mandaten:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
     logging: *default-logging
   op-public-consumer:
     image: lblod/delta-consumer:0.0.20
@@ -135,8 +139,7 @@ services:
     volumes:
       - ./data/files/consumer-files/op-public:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
+    logging: *default-logging
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.20
     environment:
@@ -157,14 +160,13 @@ services:
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
     logging: *default-logging
   search:
     image: semtech/mu-search:0.9.0-beta.7
-    restart: always
     volumes:
       - ./config/search:/config
+    restart: always
+    logging: *default-logging
   elasticsearch:
     image: semtech/mu-search-elastic-backend:1.0.1
     volumes:
@@ -172,3 +174,4 @@ services:
     environment:
       - discovery.type=single-node
     restart: always
+    logging: *default-logging
