@@ -17,6 +17,8 @@ services:
       - dispatcher:dispatcher
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
     links:
@@ -25,6 +27,8 @@ services:
       - ./config/dispatcher:/config
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   frontend:
     image: lblod/frontend-burgernabije-besluitendatabank:latest
     links:
@@ -39,6 +43,8 @@ services:
       - resources:backend
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   resources:
     image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
     environment:
