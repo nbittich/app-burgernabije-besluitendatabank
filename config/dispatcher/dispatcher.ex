@@ -22,6 +22,10 @@ defmodule Dispatcher do
   ###############
   # RESOURCES
   ###############
+  get "/articles/*path", @any do
+    Proxy.forward conn, path, "http://cache/articles/"
+  end
+
   get "/administrative-units/*path", @any do
     Proxy.forward conn, path, "http://cache/administrative-units/"
   end
