@@ -39,7 +39,8 @@ services:
     #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"
   besluiten-consumer:
-    # environment:
+    environment:
+      DCR_SYNC_BASE_URL: "https://dev.harvesting-self-service.lblod.info/"
     #   DCR_DISABLE_DELTA_INGEST: "false" # uncomment to enable data ingestion
     #   DCR_DISABLE_INITIAL_SYNC: "false" # uncomment to enable initial sync
     restart: "no"

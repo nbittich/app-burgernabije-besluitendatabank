@@ -83,7 +83,7 @@ services:
 
   besluiten-consumer:
     environment:
-      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/" # you choose endpoint here
+      DCR_SYNC_BASE_URL: "https://harvesting-self-service.lblod.info/" # you choose endpoint here
       DCR_DISABLE_DELTA_INGEST: "true"
       DCR_DISABLE_INITIAL_SYNC: "true"
 # (...) there might be other information
@@ -100,7 +100,7 @@ services:
 
   besluiten-consumer:
     environment:
-      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/" # you choose endpoint here
+      DCR_SYNC_BASE_URL: "https://harvesting-self-service.lblod.info/" # you choose endpoint here
       DCR_DISABLE_DELTA_INGEST: "false" # <------ THIS CHANGED
       DCR_DISABLE_INITIAL_SYNC: "false" # <------ THIS CHANGED
 # (...) there might be other information
@@ -196,8 +196,8 @@ After updating `docker-compose.override.yml`, don't forget `docker-compose up -d
 #### What endpoints can be used?
 ##### besluiten-consumer
 
-- Production data: N/A
-- QA data: https://qa.harvesting-self-service.lblod.info/
+- Production data: https://harvesting-self-service.prod.lblod.info/
+- QA data: https://harvesting-self-service.lblod.info/
 - DEV data: https://dev.harvesting-self-service.lblod.info/
 
 ##### mandatendatabank-consumer
