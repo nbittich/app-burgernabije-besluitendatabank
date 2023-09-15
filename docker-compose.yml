@@ -7,6 +7,8 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
+  # HTTP Proxy for identifying sessions
+  # https://github.com/mu-semtech/mu-identifier
   identifier:
     image: semtech/mu-identifier:1.9.1
     environment:
@@ -19,6 +21,9 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+  
+  # Reverse proxy that configures endpoints
+  # https://github.com/mu-semtech/mu-dispatcher
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
     links:
@@ -29,6 +34,10 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+    
+  
+  # Front-end made for BNB
+  # https://github.com/lblod/frontend-burgernabije-besluitendatabank
   frontend:
     image: lblod/frontend-burgernabije-besluitendatabank:latest
     links:
@@ -37,6 +46,9 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+    
+  # Proxy for mu-cl-resources that allows caching
+  # https://github.com/mu-semtech/mu-cache
   cache:
     image: semtech/mu-cache:2.0.2
     links:
@@ -45,6 +57,9 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+  
+  # Allows accessing linked data as a JSON:API endpoint. Used by frontend
+  # https://github.com/mu-semtech/mu-cl-resources
   resources:
     image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
     environment:
@@ -57,6 +72,9 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+
+  # Allows running .sparql & .ttl files to the triplestore
+  # https://github.com/mu-semtech/mu-migrations-service  
   migrations:
     image: semtech/mu-migrations-service:0.8.0
     links:
@@ -67,6 +85,9 @@ services:
       - ./config/migrations:/data/migrations
     restart: always
     logging: *default-logging
+
+  # SPARQL Endpoint authorization service. Adds an authentication layer to the triplestore
+  # https://github.com/mu-semtech/mu-authorization
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
@@ -78,6 +99,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  
+  # A linked-data database. All consumed data ends up here
+  # https://github.com/redpencilio/docker-virtuoso
   triplestore:
     image: redpencil/virtuoso:1.0.0
     environment:
@@ -90,12 +114,18 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  
+  # Sends notifications to the uuid-generation & resources when new data is found on specific data.vlaanderen.be urls
+  # https://github.com/mu-semtech/delta-notifier
   deltanotifier:
     image: semtech/mu-delta-notifier
     volumes:
       - ./config/delta:/config
     restart: always
     logging: *default-logging
+
+  # Service that generates uuid's for imported data to allow linked-data usage
+  # https://github.com/redpencilio/uuid-generation-service
   uuid-generation:
     image: redpencil/uuid-generation:0.2.1
     volumes:
@@ -104,6 +134,9 @@ services:
       - triplestore:database
     restart: always
     logging: *default-logging
+    
+  # Imports endpoint data into the triplestore
+  # https://github.com/lblod/delta-consumer
   mandatendatabank-consumer:
     image: lblod/delta-consumer:0.0.20
     environment:
@@ -149,7 +182,7 @@ services:
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.20
     environment:
-      DCR_SYNC_BASE_URL: "https://qa.harvesting-self-service.lblod.info/"
+      DCR_SYNC_BASE_URL: "https://harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
       DCR_SYNC_FILES_PATH: "/sync/besluiten/files"
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/BesluitenCacheGraphDump"
