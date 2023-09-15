@@ -17,6 +17,8 @@ services:
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
     links:
       - dispatcher:dispatcher
+    restart: always
+    logging: *default-logging
     labels:
       - "logging=true"
   
@@ -28,6 +30,10 @@ services:
       - resources:resource
     volumes:
       - ./config/dispatcher:/config
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
     
   
   # Front-end made for BNB
@@ -47,10 +53,10 @@ services:
     image: semtech/mu-cache:2.0.2
     links:
       - resources:backend
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   
   # Allows accessing linked data as a JSON:API endpoint. Used by frontend
   # https://github.com/mu-semtech/mu-cl-resources
@@ -62,6 +68,8 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+    restart: always
+    logging: *default-logging
     labels:
       - "logging=true"
 
@@ -75,8 +83,6 @@ services:
       MU_SPARQL_TIMEOUT: "300"
     volumes:
       - ./config/migrations:/data/migrations
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
 
@@ -91,6 +97,8 @@ services:
       - ./config/authorization:/config
     labels:
       - "logging=true"
+    restart: always
+    logging: *default-logging
   
   # A linked-data database. All consumed data ends up here
   # https://github.com/redpencilio/docker-virtuoso
@@ -104,6 +112,8 @@ services:
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
     labels:
       - "logging=true"
+    restart: always
+    logging: *default-logging
   
   # Sends notifications to the uuid-generation & resources when new data is found on specific data.vlaanderen.be urls
   # https://github.com/mu-semtech/delta-notifier
@@ -111,8 +121,8 @@ services:
     image: semtech/mu-delta-notifier
     volumes:
       - ./config/delta:/config
-    labels:
-      - "logging=true"
+    restart: always
+    logging: *default-logging
 
   # Service that generates uuid's for imported data to allow linked-data usage
   # https://github.com/redpencilio/uuid-generation-service
@@ -122,6 +132,8 @@ services:
       - ./config/uuid-generation/:/config
     links:
       - triplestore:database
+    restart: always
+    logging: *default-logging
     
   # Imports endpoint data into the triplestore
   # https://github.com/lblod/delta-consumer
@@ -145,8 +157,6 @@ services:
     volumes:
       - ./data/files/consumer-files/mandaten:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
     logging: *default-logging
   op-public-consumer:
     image: lblod/delta-consumer:0.0.20
@@ -168,8 +178,7 @@ services:
     volumes:
       - ./data/files/consumer-files/op-public:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
+    logging: *default-logging
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.20
     environment:
@@ -190,14 +199,15 @@ services:
     volumes:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
-    labels:
-      - "logging=true"
     logging: *default-logging
   search:
     image: semtech/mu-search:0.9.0-beta.7
-    restart: always
     volumes:
       - ./config/search:/config
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
   elasticsearch:
     image: semtech/mu-search-elastic-backend:1.0.1
     volumes:
@@ -205,3 +215,4 @@ services:
     environment:
       - discovery.type=single-node
     restart: always
+    logging: *default-logging
