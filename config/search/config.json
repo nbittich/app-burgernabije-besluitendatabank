@@ -39,6 +39,13 @@
         "http://data.vlaanderen.be/ns/besluit#Agendapunt"
       ],
       "properties": {
+        "abstract_location_id": [
+          "^http://data.vlaanderen.be/ns/besluit#behandelt",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#bestuurt",
+          "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
+          "http://mu.semte.ch/vocabularies/core/uuid"
+        ],
         "location_id": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
@@ -94,6 +101,9 @@
       },
       "mappings": {
         "properties": {
+          "abstract_location_id": {
+            "type": "text"
+          },
           "location_id": {
             "type": "text"
           },
