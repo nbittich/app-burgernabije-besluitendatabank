@@ -69,9 +69,6 @@ defmodule Dispatcher do
   ###############
   # SERVICES
   ###############
-  post "/sparql/*path", @json do
-    forward conn, path, "http://triplestore:8890/sparql/"
-  end
 
   # to generate uuids manually
   match "/uuid-generation/run/*path", @json do
