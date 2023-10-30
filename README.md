@@ -103,6 +103,7 @@ services:
       DCR_SYNC_BASE_URL: "https://harvesting-self-service.lblod.info/" # you choose endpoint here
       DCR_DISABLE_DELTA_INGEST: "false" # <------ THIS CHANGED
       DCR_DISABLE_INITIAL_SYNC: "false" # <------ THIS CHANGED
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "true"
 # (...) there might be other information
 ```
 
@@ -154,6 +155,7 @@ services:
     environment:
       DCR_DISABLE_DELTA_INGEST: "false"
       DCR_DISABLE_INITIAL_SYNC: "false"
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "true"
      # (...) there might be other information e.g. about the endpoint
 
 # (...) there might be other information
@@ -168,12 +170,10 @@ For both consumers you will need to first run steps 1 up to and including step 5
 
 #### 2. post-processing
 For all delta-streams, you'll have to run `docker-compose restart resources cache`.
-##### besluiten-consumer
+##### search
 In order to trigger a full mu-search reindex, you can execute `sudo bash ./scripts/reset-elastic.sh` (the stack must be up).
 It takes a while to reindex, please consider using a small dataset to speed it up.
 
-###### op-public-consumer & mandatendatabank-consumer
-No specific steps necessary.
 #### 3. switch to 'normal operation' mode
 Essentially, we want to force the data to go through mu-auth again, which is responsible for maintaining the cached data in sync. So ensure in `docker-compose.override.yml` the following.
 ```yml
@@ -186,13 +186,14 @@ services:
     environment:
       DCR_DISABLE_DELTA_INGEST: "false"
       DCR_DISABLE_INITIAL_SYNC: "false"
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false' # <------ THIS CHANGED
      # (...) there might be other information e.g. about the endpoint
 
 # (...) there might be other information
 ```
 Again, a the time of writing, the same configuration is valid for the other consumers.
 After updating `docker-compose.override.yml`, don't forget `docker-compose up -d`
+Ensure the flag `BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES` is set to `false` for **EVERY CONSUMER**
 #### What endpoints can be used?
 ##### besluiten-consumer
 
