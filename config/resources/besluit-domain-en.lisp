@@ -84,7 +84,7 @@
                 (:start-date :date ,(s-prefix "mandaat:bindingStart")))
   :has-one `((administrative-unit :via ,(s-prefix "besluit:bestuurt")
                                   :as "administrative-unit")
-             (bestuursorgaan-classificatie-code :via ,(s-prefix "besluit:classificatie")
+             (governing-body-classification-code :via ,(s-prefix "besluit:classificatie")
                                                 :as "classificatie")
              (governing-body :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
                              :as "is-time-specialization-of")
