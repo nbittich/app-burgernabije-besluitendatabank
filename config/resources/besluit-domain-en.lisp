@@ -107,6 +107,13 @@
   :features '(include-uri)
   :on-path "governing-bodies")
 
+(define-resource governing-body-classification-code ()
+  :class (s-prefix "ext:BestuursorgaanClassificatieCode")
+  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :resource-base (s-url "http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/")
+  :features '(include-uri)
+  :on-path "governing-body-classification-codes")
+
 (define-resource location ()
   :class (s-prefix "prov:Location")
   :properties `((:label :string ,(s-prefix "rdfs:label"))
