@@ -151,7 +151,7 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
     volumes:
@@ -172,7 +172,7 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
     volumes:
@@ -193,7 +193,7 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
     volumes:
