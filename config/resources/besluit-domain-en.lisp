@@ -85,7 +85,7 @@
   :has-one `((administrative-unit :via ,(s-prefix "besluit:bestuurt")
                                   :as "administrative-unit")
              (governing-body-classification-code :via ,(s-prefix "besluit:classificatie")
-                                                :as "classificatie")
+                                                :as "classification")
              (governing-body :via ,(s-prefix "mandaat:isTijdspecialisatieVan")
                              :as "is-time-specialization-of")
   ;;            (rechtstreekse-verkiezing :via ,(s-prefix "mandaat:steltSamen")
