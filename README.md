@@ -141,7 +141,7 @@ docker-compose restart migrations
 - step 5: Once migrations a success, further `besluiten-consumer` data needs to be flushed too.
 ```
 docker-compose exec besluiten-consumer curl -X POST http://localhost/flush
-docker-compose logs -f --tail=200 besluiten-consumer
+docker-compose logs -f --tail=200 besluiten-consumer 2>&1 | grep -i "flush"
 ```
   - This should end with `Flush successful`.
 - step 6: Proceed to consuming data from scratch again, ensure `docker-compose.override.yml` should AT LEAST contain the following information
