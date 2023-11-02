@@ -29,6 +29,10 @@ defmodule Dispatcher do
   get "/administrative-units/*path", @any do
     Proxy.forward conn, path, "http://cache/administrative-units/"
   end
+  
+  get "/administrative-unit-classification-codes/*path", @any do
+    Proxy.forward conn, path, "http://cache/administrative-unit-classification-codes/"
+  end
 
   get "/agenda-item-handlings/*path", @any do
     Proxy.forward conn, path, "http://cache/agenda-item-handlings/"
@@ -40,6 +44,10 @@ defmodule Dispatcher do
 
   get "/governing-bodies/*path", @any do
     Proxy.forward conn, path, "http://cache/governing-bodies/"
+  end
+  
+  get "/governing-body-classification-codes/*path", @any do
+    Proxy.forward conn, path, "http://cache/governing-body-classification-codes/"
   end
 
   get "/locations/*path", @any do
