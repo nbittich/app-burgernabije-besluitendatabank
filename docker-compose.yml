@@ -138,7 +138,7 @@ services:
   # Imports endpoint data into the triplestore
   # https://github.com/lblod/delta-consumer
   mandatendatabank-consumer:
-    image: lblod/delta-consumer:0.0.23
+    image: lblod/delta-consumer:0.0.24
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lokaalbestuur.vlaanderen.be/"
       DCR_SERVICE_NAME: "mandatendatabank-consumer"
@@ -159,7 +159,7 @@ services:
     restart: always
     logging: *default-logging
   op-public-consumer:
-    image: lblod/delta-consumer:0.0.23
+    image: lblod/delta-consumer:0.0.24
     environment:
       DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be/"
       DCR_SERVICE_NAME: "op-public-consumer"
@@ -180,7 +180,7 @@ services:
     restart: always
     logging: *default-logging
   besluiten-consumer:
-    image: lblod/delta-consumer:0.0.23
+    image: lblod/delta-consumer:0.0.24
     environment:
       DCR_SYNC_BASE_URL: "https://harvesting-self-service.lblod.info/"
       DCR_SERVICE_NAME: "besluiten-consumer"
