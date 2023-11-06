@@ -29,7 +29,7 @@ defmodule Dispatcher do
   get "/administrative-units/*path", @any do
     Proxy.forward conn, path, "http://cache/administrative-units/"
   end
-  
+
   get "/administrative-unit-classification-codes/*path", @any do
     Proxy.forward conn, path, "http://cache/administrative-unit-classification-codes/"
   end
@@ -45,7 +45,7 @@ defmodule Dispatcher do
   get "/governing-bodies/*path", @any do
     Proxy.forward conn, path, "http://cache/governing-bodies/"
   end
-  
+
   get "/governing-body-classification-codes/*path", @any do
     Proxy.forward conn, path, "http://cache/governing-body-classification-codes/"
   end
@@ -79,7 +79,7 @@ defmodule Dispatcher do
   ###############
 
   # to generate uuids manually
-  match "/uuid-generation/run/*path", @json do
+  match "/uuid-generation/run/*_path", @json do
     Proxy.forward conn, [], "http://uuid-generation/run"
   end
 
@@ -100,10 +100,6 @@ defmodule Dispatcher do
 
   match "/@appuniversum/*path", @html do
     Proxy.forward conn, path, "http://frontend/@appuniversum/"
-  end
-
-  match "/*path", @html do
-    Proxy.forward conn, [], "http://frontend/index.html"
   end
 
   match "/*_path", @html do
