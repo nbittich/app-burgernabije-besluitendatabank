@@ -85,6 +85,8 @@ services:
       - ./config/migrations:/data/migrations
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
 
   # SPARQL Endpoint authorization service. Adds an authentication layer to the triplestore
   # https://github.com/mu-semtech/mu-authorization
@@ -95,10 +97,10 @@ services:
       ERROR_ON_UNWRITTEN_DATA: "on"
     volumes:
       - ./config/authorization:/config
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   
   # A linked-data database. All consumed data ends up here
   # https://github.com/redpencilio/docker-virtuoso
@@ -110,10 +112,10 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   
   # Sends notifications to the uuid-generation & resources when new data is found on specific data.vlaanderen.be urls
   # https://github.com/mu-semtech/delta-notifier
@@ -123,6 +125,8 @@ services:
       - ./config/delta:/config
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
 
   # Service that generates uuid's for imported data to allow linked-data usage
   # https://github.com/redpencilio/uuid-generation-service
@@ -134,6 +138,8 @@ services:
       - triplestore:database
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
     
   # Imports endpoint data into the triplestore
   # https://github.com/lblod/delta-consumer
@@ -158,6 +164,8 @@ services:
       - ./data/files/consumer-files/mandaten:/consumer-files/
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   op-public-consumer:
     image: lblod/delta-consumer:0.0.24
     environment:
@@ -179,6 +187,8 @@ services:
       - ./data/files/consumer-files/op-public:/consumer-files/
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   besluiten-consumer:
     image: lblod/delta-consumer:0.0.24
     environment:
@@ -200,6 +210,8 @@ services:
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
   search:
     image: semtech/mu-search:0.9.1
     volumes:
@@ -216,3 +228,5 @@ services:
       - discovery.type=single-node
     restart: always
     logging: *default-logging
+    labels:
+      - "logging=true"
