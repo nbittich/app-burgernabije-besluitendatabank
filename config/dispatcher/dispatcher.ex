@@ -94,11 +94,11 @@ defmodule Dispatcher do
   ###############
   # FRONTEND
   ###############
-  match "/assets/*path", @html do
+  match "/assets/*path", @any do
     Proxy.forward conn, path, "http://frontend/assets/"
   end
 
-  match "/@appuniversum/*path", @html do
+  match "/@appuniversum/*path", @any do
     Proxy.forward conn, path, "http://frontend/@appuniversum/"
   end
 
