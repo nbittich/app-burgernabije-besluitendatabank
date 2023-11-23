@@ -81,6 +81,13 @@
           "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://mu.semte.ch/vocabularies/core/uuid"
         ],
+        "administrative_unit_classification": [
+          "^http://data.vlaanderen.be/ns/besluit#behandelt",
+          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "http://data.vlaanderen.be/ns/besluit#bestuurt",
+          "http://www.w3.org/ns/org#classification",
+          "http://www.w3.org/2004/02/skos/core#prefLabel"
+        ],
         "abstract_governing_body_id": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
@@ -98,7 +105,7 @@
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
           "http://www.w3.org/ns/org#classification",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"	
+          "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
         "governing_body_id": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
