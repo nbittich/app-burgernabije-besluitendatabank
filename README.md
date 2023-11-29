@@ -1,20 +1,20 @@
-# Burgernabije Besluitendatabank (back-end)
+# Lokaal Beslist (back-end)
 
-[The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
+[The back-end for BNB](https://lokaalbeslist.vlaanderen.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
 
 This project has different important moving parts:
 - The harvester (which is available in [the app-lblod-harvester repository](https://github.com/lblod/app-lblod-harvester)). This processes government-provided data into consumable [data endpoints, which you can view here](#what-endpoints-can-be-used)
 - The back-end (this repository). This is a docker-compose configuration that combines the front-end together with other services.
-- The front-end (which is available in [the frontend-burgernabije-besluitendatabank repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)). This is an Ember frontend 
+- The front-end (which is available in [the frontend-lokaalbeslist repo](https://github.com/lblod/frontend-lokaalbeslist)). This is an Ember frontend 
 
 
-You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank), and the [back-end](https://github.com/lblod/frontend-burgernabije-besluitendatabank) here. The front-end repo only contains front-end specific information, back-and and general project info will be added here.
+You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank). The front-end repo only contains front-end specific information, back-and and general project info will be added here.
 
 
 
 ## Tutorials
 You can run this app in a few different ways
-- Only run the front-end and use the existing back-end. [Instructions for this can be found in the frontend repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)
+- Only run the front-end and use the existing back-end. [Instructions for this can be found in the frontend repo](https://github.com/lblod/lokaalbeslist)
 - Run the back-end with your own consumers & front-end included. [Instructions for this are found below](#basic-setup)
 
 **Pre-requisites**: Docker & Docker-Compose installed. Some parts of the tutorials may use drc as an alias for docker-compose
@@ -22,8 +22,8 @@ You can run this app in a few different ways
 ### Basic setup
 First, clone the repository
 ```bash
-git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
-cd app-burgernabije-besluitendatabank.git
+git clone https://github.com/lblod/app-lokaalbeslist.git
+cd app-lokaalbeslist
 ```
 
 #### Selecting endpoints

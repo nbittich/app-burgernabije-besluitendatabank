@@ -37,9 +37,9 @@ services:
     
   
   # Front-end made for BNB
-  # https://github.com/lblod/frontend-burgernabije-besluitendatabank
+  # https://github.com/lblod/frontend-lokaalbeslist
   frontend:
-    image: lblod/frontend-burgernabije-besluitendatabank:0.5.1
+    image: lblod/frontend-lokaalbeslist:0.5.1
     links:
       - identifier
     restart: always
