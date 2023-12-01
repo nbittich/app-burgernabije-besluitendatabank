@@ -10,75 +10,90 @@ export default {
       filePrefix: "governing-body",
     };
 
-    const queryLocationListResponse = await batchedQuery(queryGoverningBodyList);
-    console.log(JSON.stringify(queryLocationListResponse.results));
+    // Get all governing bodies and their location
+    const queryGoverningBodyListResponse = await batchedQuery(
+      queryGoverningBodyList
+    );
     console.log(
-      `Found ${queryLocationListResponse.results.bindings.length} locations`
+      `Found ${queryGoverningBodyListResponse.results.bindings.length} governing bodies`
     );
-    const queryPerLocations = queryLocationListResponse.results.bindings.map(
-      ({ location }) => {
-        console.log(`Querying location ${location.value}`);
-        return queryLocationStats(location.value);
-      }
-    );
-    const bindings = [];
-    for (const query of queryPerLocations) {
-        const queryResponse = await batchedQuery(query);
-        console.log(JSON.stringify(queryResponse.results));
-        bindings.push(queryResponse.results.bindings);
-      }
-    console.log(`Found ${bindings.length} query responses`);
-    const data = []
-      .concat(...bindings)
-      .map(
-        ({
-          locationLabel,
-          governingBodyAbstractClassificationName,
-          firstSessionPlannedStart,
-          lastSessionPlannedStart,
-          firstSessionStartedAt,
-          lastSessionStartedAt,
-          sessionCount,
-          sessionPlannedStartCount,
-          sessionStartedAtCount,
-          sessionEndedAtCount,
-          agendaItemCount,
-          agendaItemTitleCount,
-          agendaItemDescriptionCount,
-          resolutionCount,
-          voteCount,
-        }) => ({
-          Locatie: cleanValue(locationLabel?.value),
-          "Bestuursorgaan type": cleanValue(
-            governingBodyAbstractClassificationName?.value
-          ),
-          "Eerste zitting geplande start": cleanValue(
-            firstSessionPlannedStart?.value
-          ),
-          "Laatste zitting geplande start": cleanValue(
-            lastSessionPlannedStart?.value
-          ),
-          "Eerste zitting gestart": cleanValue(firstSessionStartedAt?.value),
-          "Laatste zitting gestart": cleanValue(lastSessionStartedAt?.value),
-          "Zittingen aantal": cleanValue(sessionCount?.value),
-          "Zittingen geplande start aantal": cleanValue(
-            sessionPlannedStartCount?.value
-          ),
-          "Zittingen gestart aantal": cleanValue(sessionStartedAtCount?.value),
-          "Zittingen beëindigd aantal": cleanValue(sessionEndedAtCount?.value),
-          "Agendapunten aantal": cleanValue(agendaItemCount?.value),
-          "Agendapunten titel aantal": cleanValue(agendaItemTitleCount?.value),
-          "Agendapunten beschrijving aantal": cleanValue(
-            agendaItemDescriptionCount?.value
-          ),
-          "Agendapunten behandeling aantal": cleanValue(
-            agendaItemHandlingCount?.value
-            ),
-          "Besluiten aantal": cleanValue(resolutionCount?.value),
-          "Stemmingen aantal": cleanValue(voteCount?.value),
-        })
+
+    const data = [];
+    // Get the stats for each governing body
+    for (const {
+      governingBodyAbstract,
+      governingBodyAbstractClassificationName,
+      locationLabel,
+    } of queryGoverningBodyListResponse.results.bindings) {
+      // Load the stats
+      const queryResponse = await batchedQuery(
+        queryGoverningBodyStats(governingBodyAbstract.value)
       );
+      console.log(JSON.stringify(queryResponse.results));
+
+      const {
+        firstSessionPlannedStart,
+        lastSessionPlannedStart,
+        firstSessionStartedAt,
+        lastSessionStartedAt,
+        sessionCount,
+        sessionPlannedStartCount,
+        sessionStartedAtCount,
+        sessionEndedAtCount,
+        agendaItemCount,
+        agendaItemTitleCount,
+        agendaItemDescriptionCount,
+        agendaItemHandlingCount,
+        resolutionCount,
+        resolutionDescriptionCount,
+        resolutionMotivationCount,
+        articleCount,
+        voteCount,
+        voteSubjectCount,
+        voteConsequenceCount,
+        voteSecretCount,
+        voteNumberOfAbstentionsCount,
+        voteNumberOfOpponentsCount,
+        voteNumberOfProponentsCount,
+      } = queryResponse.results.bindings[0] || {};
+
+      // Add the stats to the data
+      data.push({
+        Locatie: cleanValue(locationLabel?.value),
+        "Bestuursorgaan type": cleanValue(
+          governingBodyAbstractClassificationName?.value
+        ),
+        "Eerste zitting geplande start": firstSessionPlannedStart?.value,
+        "Laatste zitting geplande start": lastSessionPlannedStart?.value,
+        "Eerste zitting gestart": firstSessionStartedAt?.value,
+        "Laatste zitting gestart": lastSessionStartedAt?.value,
+        "Zittingen aantal": sessionCount?.value || 0,
+        "Zittingen geplande start aantal": sessionPlannedStartCount?.value || 0,
+        "Zittingen gestart aantal": sessionStartedAtCount?.value || 0,
+        "Zittingen beëindigd aantal": sessionEndedAtCount?.value || 0,
+        "Agendapunten aantal": agendaItemCount?.value || 0,
+        "Agendapunten titel aantal": agendaItemTitleCount?.value || 0,
+        "Agendapunten beschrijving aantal": agendaItemDescriptionCount?.value || 0,
+        "Agendapunten behandeling aantal": agendaItemHandlingCount?.value || 0,
+        "Besluiten aantal": resolutionCount?.value || 0,
+        "Besluiten beschrijving aantal": resolutionDescriptionCount?.value || 0,
+        "Besluiten motivering aantal": resolutionMotivationCount?.value || 0,
+        "Besluiten artikel aantal": articleCount?.value || 0,
+        "Stemmingen aantal": voteCount?.value || 0,
+        "Stemmingen onderwerp aantal": voteSubjectCount?.value || 0,
+        "Stemmingen gevolg aantal": voteConsequenceCount?.value || 0,
+        "Stemmingen geheim aantal": voteSecretCount?.value || 0,
+        "Stemmingen aantal onthouders aantal":
+          voteNumberOfAbstentionsCount?.value || 0,
+        "Stemmingen aantal tegenstanders aantal":
+          voteNumberOfOpponentsCount?.value || 0,
+        "Stemmingen aantal voorstanders aantal":
+          voteNumberOfProponentsCount?.value || 0,
+      });
+    }
     console.log(`Found ${data.length} data rows`);
+
+    // Generate the report
     await generateReportFromData(
       data,
       [
@@ -97,7 +112,16 @@ export default {
         "Agendapunten beschrijving aantal",
         "Agendapunten behandeling aantal",
         "Besluiten aantal",
+        "Besluiten beschrijving aantal",
+        "Besluiten motivering aantal",
+        "Besluiten artikel aantal",
         "Stemmingen aantal",
+        "Stemmingen onderwerp aantal",
+        "Stemmingen gevolg aantal",
+        "Stemmingen geheim aantal",
+        "Stemmingen aantal onthouders aantal",
+        "Stemmingen aantal tegenstanders aantal",
+        "Stemmingen aantal voorstanders aantal",
       ],
       reportData
     );
@@ -137,7 +161,7 @@ WHERE {
         skos:prefLabel ?governingBodyAbstractClassificationName .
 }`;
 
-const queryLocationStats = (location) => `
+const queryGoverningBodyStats = (governingBodyURI) => `
 PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
 PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
@@ -147,8 +171,7 @@ PREFIX eli: <http://data.europa.eu/eli/ontology#>
 PREFIX code: <http://lblod.data.gift/vocabularies/organisatie/>
 
 SELECT DISTINCT 
-    ?locationLabel 
-    ?governingBodyAbstractClassificationName 
+    ?governingBodyAbstract 
     (MIN(?sessionPlannedStart) as ?firstSessionPlannedStart)
     (MAX(?sessionPlannedStart) as ?lastSessionPlannedStart)
     (MIN(?sessionStartedAt) as ?firstSessionStartedAt)
@@ -174,8 +197,8 @@ SELECT DISTINCT
     (COUNT(DISTINCT ?voteNumberOfProponents) AS ?voteNumberOfProponentsCount)
 WHERE {
     GRAPH ?g {
-        VALUES ?location {
-            <${location}>
+        VALUES ?governingBodyAbstract {
+            <${governingBodyURI}>
         }
         
         OPTIONAL {
@@ -225,17 +248,6 @@ WHERE {
                 besluit:isGehoudenDoor ?governingBodyAbstract .
         }
 
-        ?governingBodyAbstract a besluit:Bestuursorgaan ;
-            besluit:classificatie ?governingBodyAbstractClassification ;
-            besluit:bestuurt ?administrativeUnit .
-
-        ?administrativeUnit a besluit:Bestuurseenheid ;
-            besluit:werkingsgebied ?location .
-
-        ?location a prov:Location ;
-            rdfs:label ?locationLabel .
-
-        ?governingBodyAbstractClassification 
-            skos:prefLabel ?governingBodyAbstractClassificationName .
+        ?governingBodyAbstract a besluit:Bestuursorgaan .
     }
-} GROUP BY ?locationLabel ?governingBodyAbstractClassificationName`;
+} GROUP BY ?governingBodyAbstract`;
