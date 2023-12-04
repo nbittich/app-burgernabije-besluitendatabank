@@ -67,28 +67,49 @@ export default {
         "Laatste zitting geplande start": lastSessionPlannedStart?.value,
         "Eerste zitting gestart": firstSessionStartedAt?.value,
         "Laatste zitting gestart": lastSessionStartedAt?.value,
-        "Zittingen aantal": sessionCount?.value || 0,
-        "Zittingen geplande start aantal": sessionPlannedStartCount?.value || 0,
-        "Zittingen gestart aantal": sessionStartedAtCount?.value || 0,
-        "Zittingen beëindigd aantal": sessionEndedAtCount?.value || 0,
-        "Agendapunten aantal": agendaItemCount?.value || 0,
-        "Agendapunten titel aantal": agendaItemTitleCount?.value || 0,
-        "Agendapunten beschrijving aantal": agendaItemDescriptionCount?.value || 0,
-        "Agendapunten behandeling aantal": agendaItemHandlingCount?.value || 0,
-        "Besluiten aantal": resolutionCount?.value || 0,
-        "Besluiten beschrijving aantal": resolutionDescriptionCount?.value || 0,
-        "Besluiten motivering aantal": resolutionMotivationCount?.value || 0,
-        "Besluiten artikel aantal": articleCount?.value || 0,
-        "Stemmingen aantal": voteCount?.value || 0,
-        "Stemmingen onderwerp aantal": voteSubjectCount?.value || 0,
-        "Stemmingen gevolg aantal": voteConsequenceCount?.value || 0,
-        "Stemmingen geheim aantal": voteSecretCount?.value || 0,
-        "Stemmingen aantal onthouders aantal":
-          voteNumberOfAbstentionsCount?.value || 0,
-        "Stemmingen aantal tegenstanders aantal":
-          voteNumberOfOpponentsCount?.value || 0,
-        "Stemmingen aantal voorstanders aantal":
-          voteNumberOfProponentsCount?.value || 0,
+        "Zittingen aantal": cleanValue(sessionCount?.value || 0),
+        "Zittingen geplande start aantal": cleanValue(
+          sessionPlannedStartCount?.value || 0
+        ),
+        "Zittingen gestart aantal": cleanValue(
+          sessionStartedAtCount?.value || 0
+        ),
+        "Zittingen beëindigd aantal": cleanValue(
+          sessionEndedAtCount?.value || 0
+        ),
+        "Agendapunten aantal": cleanValue(agendaItemCount?.value || 0),
+        "Agendapunten titel aantal": cleanValue(
+          agendaItemTitleCount?.value || 0
+        ),
+        "Agendapunten beschrijving aantal": cleanValue(
+          agendaItemDescriptionCount?.value || 0
+        ),
+        "Agendapunten behandeling aantal": cleanValue(
+          agendaItemHandlingCount?.value || 0
+        ),
+        "Besluiten aantal": cleanValue(resolutionCount?.value || 0),
+        "Besluiten beschrijving aantal": cleanValue(
+          resolutionDescriptionCount?.value || 0
+        ),
+        "Besluiten motivering aantal": cleanValue(
+          resolutionMotivationCount?.value || 0
+        ),
+        "Besluiten artikel aantal": cleanValue(articleCount?.value || 0),
+        "Stemmingen aantal": cleanValue(voteCount?.value || 0),
+        "Stemmingen onderwerp aantal": cleanValue(voteSubjectCount?.value || 0),
+        "Stemmingen gevolg aantal": cleanValue(
+          voteConsequenceCount?.value || 0
+        ),
+        "Stemmingen geheim aantal": cleanValue(voteSecretCount?.value || 0),
+        "Stemmingen aantal onthouders aantal": cleanValue(
+          voteNumberOfAbstentionsCount?.value || 0
+        ),
+        "Stemmingen aantal tegenstanders aantal": cleanValue(
+          voteNumberOfOpponentsCount?.value || 0
+        ),
+        "Stemmingen aantal voorstanders aantal": cleanValue(
+          voteNumberOfProponentsCount?.value || 0
+        ),
       });
     }
     console.log(`Found ${data.length} data rows`);
@@ -129,12 +150,14 @@ export default {
 };
 
 const cleanValue = (inputString) => {
-  const cleanedString = inputString
-    ?.trim()
-    // Basic protection against CSV injection
-    .replace(/["';=<>]/g, "");
+  if (typeof inputString === "string") {
+    inputString = inputString
+      ?.trim()
+      // Basic protection against CSV injection
+      .replace(/["';=<>]/g, "");
+  }
 
-  return `"${cleanedString}"`;
+  return `"${inputString}"`;
 };
 
 /**
