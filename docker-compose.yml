@@ -245,3 +245,13 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  download-exports:
+    image: lblod/download-exports-service:0.1.0
+    links:
+      - database:database
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging

@@ -7,7 +7,7 @@ export default {
     const reportData = {
       title: "Bestuursorganen",
       description: "Bestuursorganen nummeren",
-      filePrefix: "governing-body",
+      filePrefix: "export/governing-body",
     };
 
     // Get all governing bodies and their location

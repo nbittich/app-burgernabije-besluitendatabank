@@ -91,6 +91,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://search/"
   end
 
+  #################################################################
+  #  Exports
+  #################################################################
+
+  get "/download-exports/*path", @any do
+    Proxy.forward conn, path, "http://download-exports/"
+  end
+
   ###############
   # FRONTEND
   ###############
