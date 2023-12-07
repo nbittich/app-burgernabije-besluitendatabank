@@ -231,3 +231,28 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+  report-generation:
+    image: lblod/loket-report-generation-service:0.7.0
+    environment:
+      ONLY_KEEP_LATEST_REPORT: "true"
+      LOG_SPARQL_ALL: "false"
+      DEBUG_AUTH_HEADERS: "false"
+    links:
+      - database:database
+    volumes:
+      - ./data/files:/share
+      - ./config/reports:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  download-exports:
+    image: lblod/download-exports-service:0.1.0
+    links:
+      - database:database
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
