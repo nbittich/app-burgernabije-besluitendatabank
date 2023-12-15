@@ -14,9 +14,6 @@ export default {
     const queryGoverningBodyListResponse = await batchedQuery(
       queryGoverningBodyList
     );
-    console.log(
-      `Found ${queryGoverningBodyListResponse.results.bindings.length} governing bodies`
-    );
 
     const data = [];
     // Get the stats for each governing body
@@ -29,7 +26,6 @@ export default {
       const queryResponse = await batchedQuery(
         queryGoverningBodyStats(governingBodyAbstract.value)
       );
-      console.log(JSON.stringify(queryResponse.results));
 
       const {
         firstSessionPlannedStart,
@@ -112,7 +108,6 @@ export default {
         ),
       });
     }
-    console.log(`Found ${data.length} data rows`);
 
     // Generate the report
     await generateReportFromData(
