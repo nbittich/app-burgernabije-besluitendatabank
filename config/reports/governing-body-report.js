@@ -1,7 +1,7 @@
 import { generateReportFromData, batchedQuery } from "../helpers.js";
 
 export default {
-  cronPattern: "0 00 23 * * *",
+  cronPattern: "0 00 23 * * Sunday",
   name: "governing-body-report",
   execute: async () => {
     const reportData = {
