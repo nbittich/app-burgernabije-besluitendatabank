@@ -233,7 +233,6 @@ services:
   report-generation:
     image: lblod/loket-report-generation-service:0.7.0
     environment:
-      ONLY_KEEP_LATEST_REPORT: "true"
       LOG_SPARQL_ALL: "false"
       DEBUG_AUTH_HEADERS: "false"
     links:
