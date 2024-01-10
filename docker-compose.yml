@@ -198,14 +198,15 @@ services:
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/besluiten"
       DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/besluitenSyncing"
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/besluiten-consumer"
-      DCR_KEEP_DELTA_FILES: "true"
+      DCR_KEEP_DELTA_FILES: "false"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "false"
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
-      PARALLEL_CALLS: 8
+      # You play with following variable in the docker-compose.override.yml.
+      PARALLEL_CALLS: 1
     volumes:
       - ./config/consumer/besluiten/:/config/triples-dispatching/custom-dispatching
       - ./data/files/consumer-files/besluiten:/consumer-files/
@@ -234,7 +235,6 @@ services:
   report-generation:
     image: lblod/loket-report-generation-service:0.7.0
     environment:
-      ONLY_KEEP_LATEST_REPORT: "true"
       LOG_SPARQL_ALL: "false"
       DEBUG_AUTH_HEADERS: "false"
     links:
