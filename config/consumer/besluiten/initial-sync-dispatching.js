@@ -47,7 +47,7 @@ async function dispatch(lib, data) {
     { "mu-call-scope-id": MU_CALL_SCOPE_ID_INITIAL_SYNC },
     endpoint,
     "INSERT",
-    BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES,
+    BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES ? DIRECT_DATABASE_ENDPOINT : '',
     PARALLEL_CALLS
   );
 }

@@ -43,7 +43,7 @@ async function dispatch(lib, data) {
       {},
       endpoint,
       "DELETE",
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES,
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES ? DIRECT_DATABASE_ENDPOINT : '',
       PARALLEL_CALLS
     );
 
@@ -57,7 +57,7 @@ async function dispatch(lib, data) {
       {},
       endpoint,
       "INSERT",
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES,
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES ? DIRECT_DATABASE_ENDPOINT : '',
       PARALLEL_CALLS
     );
 
