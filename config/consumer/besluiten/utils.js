@@ -39,7 +39,7 @@ async function parallelisedBatchedUpdate (
         catch(e) {
           console.warn(`Error ${e} ingesting parallel batch.`);
           // This means we haven't tried directly through virtuoso yet
-          if(!directDatabaseEndpoint) {
+          if(directDatabaseEndpoint) {
             console.warn(`Ingesting through mu-auth failed.
               Attempt with a direct call to ${directDatabaseEndpoint} this time...`);
             await batchedUpdate(
