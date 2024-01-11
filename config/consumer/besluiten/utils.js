@@ -7,7 +7,7 @@ async function parallelisedBatchedUpdate (
   extraHeaders,
   endpoint,
   operation,
-  bypassMuAuth = false,
+  directDatabaseEndpoint = '',
   threads = 1
 ) {
 
@@ -39,9 +39,9 @@ async function parallelisedBatchedUpdate (
         catch(e) {
           console.warn(`Error ${e} ingesting parallel batch.`);
           // This means we haven't tried directly through virtuoso yet
-          if(!bypassMuAuth) {
+          if(!directDatabaseEndpoint) {
             console.warn(`Ingesting through mu-auth failed.
-              Attempt with a direct call to ${operation} this time...`);
+              Attempt with a direct call to ${directDatabaseEndpoint} this time...`);
             await batchedUpdate(
               lib,
               parallelBatch,
@@ -49,7 +49,7 @@ async function parallelisedBatchedUpdate (
               sleep,
               batch,
               extraHeaders,
-              endpoint,
+              directDatabaseEndpoint,
               operation,
             );
           }
