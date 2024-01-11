@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 x-logging: &default-logging
   driver: "json-file"
@@ -21,7 +21,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  
+
   # Reverse proxy that configures endpoints
   # https://github.com/mu-semtech/mu-dispatcher
   dispatcher:
@@ -34,8 +34,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-    
-  
+
   # Front-end made for BNB
   # https://github.com/lblod/frontend-burgernabije-besluitendatabank
   frontend:
@@ -46,7 +45,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-    
+
   # Proxy for mu-cl-resources that allows caching
   # https://github.com/mu-semtech/mu-cache
   cache:
@@ -57,13 +56,13 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  
+
   # Allows accessing linked data as a JSON:API endpoint. Used by frontend
   # https://github.com/mu-semtech/mu-cl-resources
   resources:
     image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
     environment:
-        CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
+      CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     links:
       - database:database
     volumes:
@@ -74,7 +73,7 @@ services:
       - "logging=true"
 
   # Allows running .sparql & .ttl files to the triplestore
-  # https://github.com/mu-semtech/mu-migrations-service  
+  # https://github.com/mu-semtech/mu-migrations-service
   migrations:
     image: semtech/mu-migrations-service:0.8.0
     links:
@@ -101,7 +100,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  
+
   # A linked-data database. All consumed data ends up here
   # https://github.com/redpencilio/docker-virtuoso
   triplestore:
@@ -116,7 +115,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  
+
   # Sends notifications to the uuid-generation & resources when new data is found on specific data.vlaanderen.be urls
   # https://github.com/mu-semtech/delta-notifier
   deltanotifier:
@@ -140,7 +139,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-    
+
   # Imports endpoint data into the triplestore
   # https://github.com/lblod/delta-consumer
   mandatendatabank-consumer:
@@ -157,7 +156,7 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "false"
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
     volumes:
@@ -180,7 +179,7 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "false"
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
     volumes:
@@ -203,10 +202,13 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
-      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "false"
       DIRECT_DATABASE_ENDPOINT: "http://triplestore:8890/sparql"
       BATCH_SIZE: 250
+      # You play with following variable in the docker-compose.override.yml.
+      PARALLEL_CALLS: 1
     volumes:
+      - ./config/consumer/besluiten/:/config/triples-dispatching/custom-dispatching
       - ./data/files/consumer-files/besluiten:/consumer-files/
     restart: always
     logging: *default-logging
