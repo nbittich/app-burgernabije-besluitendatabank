@@ -152,7 +152,7 @@ services:
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/mandatarissen"
       DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/mandatarissenSyncing"
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/mandatendatabank-consumer"
-      DCR_KEEP_DELTA_FILES: "true"
+      DCR_KEEP_DELTA_FILES: "false"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
@@ -175,7 +175,7 @@ services:
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/op-public"
       DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/deltaSync/op-public"
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/op-public-consumer"
-      DCR_KEEP_DELTA_FILES: "true"
+      DCR_KEEP_DELTA_FILES: "false"
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DISABLE_DELTA_INGEST: "true" # toggle this in override, leave 'true' in default docker-compose.yml
       DCR_DISABLE_INITIAL_SYNC: "true" # toggle this in override, leave 'true' in default docker-compose.yml
