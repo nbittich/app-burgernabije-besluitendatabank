@@ -48,18 +48,20 @@ export default [
             ignoreFromSelf: true
         }
     },
-    {
-        match: {
-            subject: {}
-        },
-        callback: {
-            url: "http://resources/.mu/delta",
-            method: "POST"
-        },
-        options: {
-            resourceFormat: "v0.0.1",
-            gracePeriod: 250,
-            ignoreFromSelf: true
-        }
-    }
-]
+    // Deliberate disabling of delta-notifications for resources
+    // Under heavy load; resources has issues clearing cache
+    // {
+    //     match: {
+    //         subject: {}
+    //     },
+    //     callback: {
+    //         url: "http://resources/.mu/delta",
+    //         method: "POST"
+    //     },
+    //     options: {
+    //         resourceFormat: "v0.0.1",
+    //         gracePeriod: 250,
+    //         ignoreFromSelf: true
+    //     }
+    // }
+];
