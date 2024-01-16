@@ -19,6 +19,17 @@ defmodule Dispatcher do
   # Run `docker-compose restart dispatcher` after updating
   # this file.
 
+  #############################################################
+  # IMPORTANT NOTES
+  # It's a deliberate choice to not wire the
+  # mu-resource calls through mu-cache (at the moment)
+  # It seems under heavy load during consuming;
+  #  mu-resource can't handle all incoming delta's.
+  # So please keep this in mind.
+  # Probably the performance impact is limited; it's only
+  # in the detail-view; and often these are not cached anyhow
+  #############################################################
+
   ###############
   # RESOURCES
   ###############

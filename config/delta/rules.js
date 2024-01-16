@@ -48,8 +48,11 @@ export default [
             ignoreFromSelf: true
         }
     },
+    // NOTE:
     // Deliberate disabling of delta-notifications for resources
     // Under heavy load; resources has issues clearing cache
+    // This means we can't use mu-cache ATM.
+    // Please; check dispatcher for more info
     // {
     //     match: {
     //         subject: {}
