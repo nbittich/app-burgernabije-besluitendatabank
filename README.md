@@ -218,8 +218,10 @@ Ensure the flag `BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES` is set to `false` for **E
 The report is generated every day at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`. 
 
 #### Trigger report generation manually
+
+First you need to find the IP address of the `generate-reports` service. You can do this by running `docker inspect app-burgernabije-besluitendatabank-report-generation-1 | grep IPAddress`. Then use the IP address in the following command:
 ```bash
-curl --header "Content-Type: application/json" --request POST --data '{"data":{"attributes":{"reportName":"governing-body-report"}}}' $BASE_URL/generate-reports/reports
+curl --header "Content-Type: application/json" --request POST --data '{"data":{"attributes":{"reportName":"governing-body-report"}}}' $IPAddress/reports
 ```
 
 ## Reference
