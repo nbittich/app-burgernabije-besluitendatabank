@@ -19,59 +19,70 @@ defmodule Dispatcher do
   # Run `docker-compose restart dispatcher` after updating
   # this file.
 
+  #############################################################
+  # IMPORTANT NOTES
+  # It's a deliberate choice to not wire the
+  # mu-resource calls through mu-cache (at the moment)
+  # It seems under heavy load during consuming;
+  #  mu-resource can't handle all incoming delta's.
+  # So please keep this in mind.
+  # Probably the performance impact is limited; it's only
+  # in the detail-view; and often these are not cached anyhow
+  #############################################################
+
   ###############
   # RESOURCES
   ###############
   get "/articles/*path", @any do
-    Proxy.forward conn, path, "http://cache/articles/"
+    Proxy.forward conn, path, "http://resources/articles/"
   end
 
   get "/administrative-units/*path", @any do
-    Proxy.forward conn, path, "http://cache/administrative-units/"
+    Proxy.forward conn, path, "http://resources/administrative-units/"
   end
 
   get "/administrative-unit-classification-codes/*path", @any do
-    Proxy.forward conn, path, "http://cache/administrative-unit-classification-codes/"
+    Proxy.forward conn, path, "http://resources/administrative-unit-classification-codes/"
   end
 
   get "/agenda-item-handlings/*path", @any do
-    Proxy.forward conn, path, "http://cache/agenda-item-handlings/"
+    Proxy.forward conn, path, "http://resources/agenda-item-handlings/"
   end
 
   get "/agenda-items/*path", @any do
-    Proxy.forward conn, path, "http://cache/agenda-items/"
+    Proxy.forward conn, path, "http://resources/agenda-items/"
   end
 
   get "/governing-bodies/*path", @any do
-    Proxy.forward conn, path, "http://cache/governing-bodies/"
+    Proxy.forward conn, path, "http://resources/governing-bodies/"
   end
 
   get "/governing-body-classification-codes/*path", @any do
-    Proxy.forward conn, path, "http://cache/governing-body-classification-codes/"
+    Proxy.forward conn, path, "http://resources/governing-body-classification-codes/"
   end
 
   get "/locations/*path", @any do
-    Proxy.forward conn, path, "http://cache/locations/"
+    Proxy.forward conn, path, "http://resources/locations/"
   end
 
   get "/mandataries/*path", @any do
-    Proxy.forward conn, path, "http://cache/mandataries/"
+    Proxy.forward conn, path, "http://resources/mandataries/"
   end
 
   get "/memberships/*path", @any do
-    Proxy.forward conn, path, "http://cache/memberships/"
+    Proxy.forward conn, path, "http://resources/memberships/"
   end
 
   get "/resolutions/*path", @any do
-    Proxy.forward conn, path, "http://cache/resolutions/"
+    Proxy.forward conn, path, "http://resources/resolutions/"
   end
 
   get "/sessions/*path", @any do
-    Proxy.forward conn, path, "http://cache/sessions/"
+    Proxy.forward conn, path, "http://resources/sessions/"
   end
 
   get "/votes/*path", @any do
-    Proxy.forward conn, path, "http://cache/votes/"
+    Proxy.forward conn, path, "http://resources/votes/"
   end
 
   ###############
