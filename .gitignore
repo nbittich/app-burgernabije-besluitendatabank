@@ -11,3 +11,4 @@ docker-compose.override.yml*
 .env
 
 /config/migrations/local/
+/config/search/update-handler.store
