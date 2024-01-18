@@ -45,12 +45,6 @@ export default {
         resolutionMotivationCount,
         articleCount,
         voteCount,
-        voteSubjectCount,
-        voteConsequenceCount,
-        voteSecretCount,
-        voteNumberOfAbstentionsCount,
-        voteNumberOfOpponentsCount,
-        voteNumberOfProponentsCount,
       } = queryResponse.results.bindings[0] || {};
 
       // Add the stats to the data
@@ -92,20 +86,6 @@ export default {
         ),
         "Besluiten artikel aantal": cleanValue(articleCount?.value || 0),
         "Stemmingen aantal": cleanValue(voteCount?.value || 0),
-        "Stemmingen onderwerp aantal": cleanValue(voteSubjectCount?.value || 0),
-        "Stemmingen gevolg aantal": cleanValue(
-          voteConsequenceCount?.value || 0
-        ),
-        "Stemmingen geheim aantal": cleanValue(voteSecretCount?.value || 0),
-        "Stemmingen aantal onthouders aantal": cleanValue(
-          voteNumberOfAbstentionsCount?.value || 0
-        ),
-        "Stemmingen aantal tegenstanders aantal": cleanValue(
-          voteNumberOfOpponentsCount?.value || 0
-        ),
-        "Stemmingen aantal voorstanders aantal": cleanValue(
-          voteNumberOfProponentsCount?.value || 0
-        ),
       });
     }
 
@@ -132,12 +112,6 @@ export default {
         "Besluiten motivering aantal",
         "Besluiten artikel aantal",
         "Stemmingen aantal",
-        "Stemmingen onderwerp aantal",
-        "Stemmingen gevolg aantal",
-        "Stemmingen geheim aantal",
-        "Stemmingen aantal onthouders aantal",
-        "Stemmingen aantal tegenstanders aantal",
-        "Stemmingen aantal voorstanders aantal",
       ],
       reportData
     );
@@ -207,12 +181,6 @@ SELECT DISTINCT
     (COUNT(DISTINCT ?resolutionMotivation) AS ?resolutionMotivationCount)
     (COUNT(DISTINCT ?article) AS ?articleCount)
     (COUNT(DISTINCT ?vote) AS ?voteCount)
-    (COUNT(DISTINCT ?voteSubject) AS ?voteSubjectCount)
-    (COUNT(DISTINCT ?voteConsequence) AS ?voteConsequenceCount)
-    (COUNT(DISTINCT ?voteSecret) AS ?voteSecretCount)
-    (COUNT(DISTINCT ?voteNumberOfAbstentions) AS ?voteNumberOfAbstentionsCount)
-    (COUNT(DISTINCT ?voteNumberOfOpponents) AS ?voteNumberOfOpponentsCount)
-    (COUNT(DISTINCT ?voteNumberOfProponents) AS ?voteNumberOfProponentsCount)
 WHERE {
     GRAPH ?g {
         VALUES ?governingBodyAbstract {
@@ -231,14 +199,7 @@ WHERE {
                 OPTIONAL { ?resolution eli:has_part ?article . }
             }
             OPTIONAL { 
-                ?agendaItemHandling besluit:heeftStemming ?vote . 
-                
-                OPTIONAL { ?vote besluit:onderwerp ?voteSubject . }
-                OPTIONAL { ?vote besluit:gevolg ?voteConsequence . }
-                OPTIONAL { ?vote besluit:geheim ?voteSecret . }
-                OPTIONAL { ?vote besluit:aantalOnthouders ?voteNumberOfAbstentions . }
-                OPTIONAL { ?vote besluit:aantalTegenstanders ?voteNumberOfOpponents . }
-                OPTIONAL { ?vote besluit:aantalVoorstanders ?voteNumberOfProponents . }
+                ?agendaItemHandling besluit:heeftStemming ?vote .
             }
         }
 
