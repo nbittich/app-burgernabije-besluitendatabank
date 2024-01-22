@@ -16,17 +16,18 @@
       }
     ]
   ],
-  "default_settings": {
+  "default_settings" : {
     "analysis": {
-      "normalizer": {
-        "custom_sort_normalizer": {
-          "type": "custom",
-          "char_filter": [],
-          "filter": [
-            "lowercase",
-            "trim",
-            "asciifolding"
-          ]
+      "analyzer": {
+        "dutchanalyzer": {
+          "tokenizer": "standard",
+          "filter": ["lowercase", "asciifolding", "dutchstemmer"]
+        }
+      },
+      "filter": {
+        "dutchstemmer": {
+          "type": "stemmer",
+          "name": "dutch"
         }
       }
     }
@@ -93,7 +94,7 @@
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
           "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
-        "abstract_governing_body_classification": [
+        "abstract_governing_body_classification_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
@@ -117,7 +118,7 @@
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
-        "governing_body_classification": [
+        "governing_body_classification_name": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
           "http://www.w3.org/ns/org#classification",
@@ -145,70 +146,73 @@
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://www.w3.org/ns/prov#endedAtTime"
         ],
-        "title": ["http://purl.org/dc/terms/title"],
-        "description": ["http://purl.org/dc/terms/description"]
+        "title": [
+          "http://purl.org/dc/terms/title"
+        ],
+        "description": [
+          "http://purl.org/dc/terms/description"
+        ],
+        "resolution_title": [
+          "^http://purl.org/dc/terms/subject",
+          "http://www.w3.org/ns/prov#generated",
+          "http://data.europa.eu/eli/ontology#title"
+        ],
+        "resolution_description": [
+          "^http://purl.org/dc/terms/subject",
+          "http://www.w3.org/ns/prov#generated",
+          "http://data.europa.eu/eli/ontology#description"
+        ]
       },
       "mappings": {
         "properties": {
           "abstract_location_id": {
-            "type": "text"
+            "type": "keyword",
+            "copy_to": "search_location_id"
           },
           "location_id": {
-            "type": "text"
-          },
-          "title": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
-          },
-          "description": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
+            "type": "keyword",
+            "copy_to": "search_location_id"
           },
           "abstract_governing_body_location_name": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
+            "type": "text"
           },
           "governing_body_location_name": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
+            "type": "text"
+          },
+          "administrative_unit_name": {
+            "type": "text"
+          },
+          "administrative_unit_id": {
+            "type": "keyword"
+          },
+          "abstract_governing_body_id": {
+            "type": "keyword"
           },
           "abstract_governing_body_name": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
+            "type": "text"
+          },
+          "abstract_governing_body_classification_name": {
+            "type": "text"
+          },
+          "abstract_governing_body_classification_id": {
+            "type": "keyword",
+            "copy_to": "search_governing_body_classification_id"
+          },
+          "governing_body_id": {
+            "type": "keyword"
           },
           "governing_body_name": {
-            "type": "text",
-            "fields": {
-              "field": {
-                "type": "keyword",
-                "normalizer": "custom_sort_normalizer"
-              }
-            }
+            "type": "text"
+          },
+          "governing_body_classification_name": {
+            "type": "text"
+          },
+          "governing_body_classification_id": {
+            "type": "keyword",
+            "copy_to": "search_governing_body_classification_id"
+          },
+          "session_id": {
+            "type": "keyword"
           },
           "session_planned_start": {
             "type": "date",
@@ -233,6 +237,34 @@
                 "type": "date"
               }
             }
+          },
+          "title": {
+            "type": "text",
+            "copy_to": ["search_title", "search_content"]
+          },
+          "description": {
+            "type": "text",
+            "copy_to": "search_content"
+          },
+          "resolution_title": {
+            "type": "text",
+            "copy_to": ["search_title", "search_content"]
+          },
+          "resolution_description": {
+            "type": "text",
+            "copy_to": "search_content"
+          },
+          "search_title": {
+            "type": "text"
+          },
+          "search_content": {
+            "type": "text"
+          },
+          "search_governing_body_classification_id": {
+            "type": "keyword"
+          },
+          "search_location_id": {
+            "type": "keyword"
           }
         }
       }
