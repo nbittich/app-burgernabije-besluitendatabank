@@ -215,7 +215,7 @@ Ensure the flag `BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES` is set to `false` for **E
 
 ### Bestuursorganen Report
 
-The report is generated every day at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`. 
+The report is generated every Sunday at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`. 
 
 #### Trigger report generation manually
 
