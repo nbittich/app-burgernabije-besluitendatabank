@@ -233,7 +233,7 @@ services:
     labels:
       - "logging=true"
   report-generation:
-    image: lblod/loket-report-generation-service:0.7.0
+    image: lblod/loket-report-generation-service:0.8.0
     environment:
       LOG_SPARQL_ALL: "false"
       DEBUG_AUTH_HEADERS: "false"
