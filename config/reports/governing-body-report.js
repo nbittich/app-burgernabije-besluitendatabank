@@ -4,6 +4,7 @@ export default {
   cronPattern: "0 00 23 * * Sunday",
   name: "governing-body-report",
   execute: async () => {
+    console.log("Start generating governing body report...");
     const reportData = {
       title: "Bestuursorganen",
       description: "Bestuursorganen nummeren",
@@ -13,6 +14,9 @@ export default {
     // Get all governing bodies and their location
     const queryGoverningBodyListResponse = await batchedQuery(
       queryGoverningBodyList
+    );
+    console.log(
+      `Found ${queryGoverningBodyListResponse.results.bindings.length} governing bodies`
     );
 
     const data = [];
@@ -88,6 +92,7 @@ export default {
         "Stemmingen aantal": cleanValue(voteCount?.value || 0),
       });
     }
+    console.log("Governing body data loaded.");
 
     // Generate the report
     await generateReportFromData(
@@ -115,6 +120,8 @@ export default {
       ],
       reportData
     );
+
+    console.log("Governing body report generated.");
   },
 };
 
