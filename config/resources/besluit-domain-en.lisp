@@ -28,7 +28,7 @@
                 (:public :boolean ,(s-prefix "besluit:openbaar"))
                 (:title :string ,(s-prefix "dct:title"))
                 (:type :uri-set ,(s-prefix "besluit:Agendapunt.type"))
-                (:alternate-link :string ,(s-prefix "prov:wasDerivedFrom"))
+                (:alternate-link :string-set ,(s-prefix "prov:wasDerivedFrom"))
                 )
   :has-many `((session :via ,(s-prefix "besluit:behandelt")
                       :inverse t
