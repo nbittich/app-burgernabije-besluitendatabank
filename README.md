@@ -213,6 +213,36 @@ Ensure the flag `BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES` is set to `false` for **E
 - QA data: https://organisaties.abb.lblod.info/
 - DEV data: https://dev.organisaties.abb.lblod.info/
 
+### Setup local development environment
+To setup a local development environment, you can follow the steps below.
+
+1. Clone the repository
+2. Create .env file in the root of the project: `COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml > .env`
+3. Run `docker-compose up -d`
+4. Wait for all initialSync consumers to finish. You can check progression with this sparql query: 
+```sparql
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX task: <http://redpencil.data.gift/vocabularies/tasks/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX cogs: <http://vocab.deri.ie/cogs#>
+
+SELECT ?s ?operation ?status ?created ?modified ?creator WHERE {
+  ?s a cogs:Job ;
+    adms:status ?status ;
+    task:operation ?operation ;
+    dct:created ?created ;
+    dct:modified ?modified;
+    dct:creator ?creator .
+}
+ORDER BY DESC(?created)
+LIMIT 100
+```
+5. switch consumers to 'normal operation' mode in `docker-compose.dev.yml` as described in the previous section. 
+6. Run `docker-compose up -d` to restart the stack
+7. `./scripts/reset-elastic.sh` reset elastic search
+Progression is visible via: `docker compose logs search -tf --tail=100`
+8. The app should now be available at `http://localhost`
+
 ### Bestuursorganen Report
 
 The report is generated every Sunday at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`. 
