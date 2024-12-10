@@ -16,12 +16,16 @@
       }
     ]
   ],
-  "default_settings" : {
+  "default_settings": {
     "analysis": {
       "analyzer": {
         "dutchanalyzer": {
           "tokenizer": "standard",
-          "filter": ["lowercase", "asciifolding", "dutchstemmer"]
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "dutchstemmer"
+          ]
         }
       },
       "filter": {
@@ -65,16 +69,6 @@
           "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://www.w3.org/2000/01/rdf-schema#label"
-        ],
-        "administrative_unit_name": [
-          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "http://data.vlaanderen.be/ns/besluit#bestuurt",
-          "http://www.w3.org/2000/01/rdf-schema#label"
-        ],
-        "administrative_unit_id": [
-          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "http://data.vlaanderen.be/ns/besluit#bestuurt",
-          "http://mu.semte.ch/vocabularies/core/uuid"
         ],
         "abstract_governing_body_id": [
           "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
@@ -166,12 +160,6 @@
           "governing_body_location_name": {
             "type": "text"
           },
-          "administrative_unit_name": {
-            "type": "text"
-          },
-          "administrative_unit_id": {
-            "type": "keyword"
-          },
           "abstract_governing_body_id": {
             "type": "keyword"
           },
@@ -224,7 +212,9 @@
           },
           "agenda-items_title": {
             "type": "text",
-            "copy_to": ["search_title", "search_content"]
+            "copy_to": [
+              "search_content"
+            ]
           },
           "agenda-items_description": {
             "type": "text",
@@ -232,14 +222,13 @@
           },
           "resolutions_title": {
             "type": "text",
-            "copy_to": ["search_title", "search_content"]
+            "copy_to": [
+              "search_content"
+            ]
           },
           "resolutions_description": {
             "type": "text",
             "copy_to": "search_content"
-          },
-          "search_title": {
-            "type": "text"
           },
           "search_content": {
             "type": "text"
@@ -252,7 +241,7 @@
           }
         }
       }
-    }, 
+    },
     {
       "type": "agenda-item",
       "on_path": "agenda-items",
@@ -289,18 +278,6 @@
           "http://data.vlaanderen.be/ns/besluit#bestuurt",
           "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
           "http://www.w3.org/2000/01/rdf-schema#label"
-        ],
-        "administrative_unit_name": [
-          "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "http://data.vlaanderen.be/ns/besluit#bestuurt",
-          "http://www.w3.org/2000/01/rdf-schema#label"
-        ],
-        "administrative_unit_id": [
-          "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "http://data.vlaanderen.be/ns/besluit#bestuurt",
-          "http://mu.semte.ch/vocabularies/core/uuid"
         ],
         "abstract_governing_body_id": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
@@ -350,10 +327,6 @@
           "http://www.w3.org/ns/org#classification",
           "http://mu.semte.ch/vocabularies/core/uuid"
         ],
-        "session_id": [
-          "^http://data.vlaanderen.be/ns/besluit#behandelt",
-          "http://mu.semte.ch/vocabularies/core/uuid"
-        ],
         "session_planned_start": [
           "^http://data.vlaanderen.be/ns/besluit#behandelt",
           "http://data.vlaanderen.be/ns/besluit#geplandeStart"
@@ -399,12 +372,6 @@
           "governing_body_location_name": {
             "type": "text"
           },
-          "administrative_unit_name": {
-            "type": "text"
-          },
-          "administrative_unit_id": {
-            "type": "keyword"
-          },
           "abstract_governing_body_id": {
             "type": "keyword"
           },
@@ -430,9 +397,6 @@
           "governing_body_classification_id": {
             "type": "keyword",
             "copy_to": "search_governing_body_classification_id"
-          },
-          "session_id": {
-            "type": "keyword"
           },
           "session_planned_start": {
             "type": "date",
@@ -460,7 +424,9 @@
           },
           "title": {
             "type": "text",
-            "copy_to": ["search_title", "search_content"]
+            "copy_to": [
+              "search_content"
+            ]
           },
           "description": {
             "type": "text",
@@ -468,14 +434,13 @@
           },
           "resolution_title": {
             "type": "text",
-            "copy_to": ["search_title", "search_content"]
+            "copy_to": [
+              "search_content"
+            ]
           },
           "resolution_description": {
             "type": "text",
             "copy_to": "search_content"
-          },
-          "search_title": {
-            "type": "text"
           },
           "search_content": {
             "type": "text"
