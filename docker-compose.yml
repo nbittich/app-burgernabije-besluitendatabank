@@ -60,7 +60,7 @@ services:
   # Allows accessing linked data as a JSON:API endpoint. Used by frontend
   # https://github.com/mu-semtech/mu-cl-resources
   resources:
-    image: semtech/mu-cl-resources:feature-optionally-accept-strange-resource-types
+    image: semtech/mu-cl-resources:1.25.0
     environment:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     links:
