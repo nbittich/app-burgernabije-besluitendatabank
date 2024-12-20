@@ -88,14 +88,12 @@ services:
       - "logging=true"
 
   # SPARQL Endpoint authorization service. Adds an authentication layer to the triplestore
-  # https://github.com/mu-semtech/mu-authorization
+  # https://github.com/mu-semtech/sparql-parser
   database:
-    image: semtech/mu-authorization:0.6.0-beta.8
-    environment:
-      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
-      ERROR_ON_UNWRITTEN_DATA: "on"
+    image: semtech/sparql-parser:0.0.13
     volumes:
       - ./config/authorization:/config
+      - ./data/authorization:/data
     restart: always
     logging: *default-logging
     labels:
@@ -118,7 +116,7 @@ services:
 
   # Sends notifications to the uuid-generation & resources when new data is found on specific data.vlaanderen.be urls
   # https://github.com/mu-semtech/delta-notifier
-  deltanotifier:
+  delta-notifier:
     image: semtech/mu-delta-notifier:0.4.0
     volumes:
       - ./config/delta:/config
