@@ -188,7 +188,7 @@ services:
       - "logging=true"
 
   swarm-consumer:
-    image: nbittich/sync-consumer:0.1.4
+    image: nbittich/sync-consumer:0.1.5
     environment:
       SWARM_BASE_URL: http://job-manager
       SWARM_USERNAME: bnb
